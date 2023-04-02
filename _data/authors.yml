@@ -17,7 +17,7 @@ author1:
     path: /assets/img/blog/profile.jpg
     # srcset is optional, but can be used to provide higher res versions for retina displays
     srcset:
-      1x: https://via.placeholder.com/128x128
+      1x: /assets/img/blog/profile.jpg
       2x: https://via.placeholder.com/256x256
 
   # Social media icons in sidebar
