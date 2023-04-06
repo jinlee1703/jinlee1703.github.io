@@ -13,25 +13,25 @@ hide_last_modified: true
 
 1. Repository name은 `username.github.io`로 만들기
 
-   ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/6ac6c79d-53c5-448a-8bb1-98532cc47179/Untitled.png)
+   ![image](https://user-images.githubusercontent.com/68031450/230421214-d9e2272a-f827-4de2-b368-2e702aae1c41.png)
 
 2. Repository 유형은 `Public`으로 만들기
 
-   ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/717a6df3-208d-471a-ab82-14ee05d22458/Untitled.png)
+   ![image](https://user-images.githubusercontent.com/68031450/230421381-74bc6c81-55ff-4bc8-a7a3-db18540494a4.png)
 
 3. `Add a README file` 체크하기
 
-   ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/56b9af37-b457-41ed-ba61-d08f49acae8a/Untitled.png)
+   ![image](https://user-images.githubusercontent.com/68031450/230421491-dd269849-4fa9-49aa-89f0-9c24f125ef71.png)
 
 ## 2. Local 환경에 repository를 clone
 
 ### 1. Clone을 위한 주소 복사
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/11df4b1b-238e-4fe4-b78c-96d1df804359/Untitled.png)
+![image](https://user-images.githubusercontent.com/68031450/230421565-5413aecb-9c46-4ed9-9eca-3f4e0b1fc1fa.png)
 
 ### 2. Git Bash를 통해 원하는 위치에 git clone
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/ee12244f-0515-49d7-ac86-3828db043d07/Untitled.png)
+![image](https://user-images.githubusercontent.com/68031450/230421686-ffca8522-745f-4587-aae5-8f93717d5d98.png)
 
 ## 3. 테스트를 위해 index.html 파일 생성
 
@@ -39,19 +39,19 @@ hide_last_modified: true
 
 - cd 명령어를 통해 Git Bash의 현재 경로를 username.github.io 디렉토리로 변경하거나 username.github.io 디렉토리 내에서 Git Bash 창을 열어서 조작해야 함
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/cefedcea-d8fa-40dd-9a69-d0c11ea767ac/Untitled.png)
+![image](https://user-images.githubusercontent.com/68031450/230421986-c45f8d28-1179-4bf9-916e-6475b0f86684.png)
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/bdea8deb-e663-490f-bdef-b0560269bc5e/Untitled.png)
+![image](https://user-images.githubusercontent.com/68031450/230422062-fa95ac72-eb11-43bf-bba4-c1bd18e26461.png)
 
 ### 2. 원격 저장소로 Push
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/e8e27055-cdec-4a4a-9f07-82645af327a3/Untitled.png)
+![image](https://user-images.githubusercontent.com/68031450/230422203-5b1f679e-2c3a-47ed-9ea5-9dc62f929aab.png)
 
 ## 4. 결과 확인
 
 - 브라우저에서 username.github.io로 확인해보면 잘 반영된 것을 확인해볼 수 있다.
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/5f3af154-a35a-4a9c-9ac0-c65207c6a994/Untitled.png)
+![image](https://user-images.githubusercontent.com/68031450/230422311-7e04a123-36d7-401d-bc3c-3a40e3524f54.png)
 
 ---
 
@@ -89,7 +89,7 @@ jekyll new ./ --force
 - 해당 디렉토리가 비어있지 않아서 conflict가 발생했다.
 - conflict를 해결하기 위해 --force 옵션을 추가하여 해결하였다.
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/7cfc47bf-a779-40f7-8b8a-4e3af7910873/Untitled.png)
+![image](https://user-images.githubusercontent.com/68031450/230422575-6eb4760e-109e-4aea-867e-47081857d2ff.png)
 
 ### 4. jekyll을 로컬 서버에 띄우기
 
@@ -97,9 +97,9 @@ jekyll new ./ --force
 bundle exec jekyll serve
 ```
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/fdd75b03-0915-4e60-b356-22771465fdf6/Untitled.png)
+![image](https://user-images.githubusercontent.com/68031450/230422821-7720ff68-2e05-4297-bbfc-65ba74c2a16c.png)
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/361bdb2e-80b0-409b-9f47-554112d56247/Untitled.png)
+![image](https://user-images.githubusercontent.com/68031450/230422990-5d1bd73d-ba96-464c-95cb-c6d383fec708.png)
 
 - 사소한 경고들이 나오긴 하지만 정상적으로 동작하는 것을 확인할 수 있다.
 
@@ -111,7 +111,7 @@ git commit -m "initialize jekyll"
 git push
 ```
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/11ba7bf1-f67a-47b3-bb2a-54ab0543d430/Untitled.png)
+![image](https://user-images.githubusercontent.com/68031450/230423092-5a4b045d-2837-4438-ab03-af360e87d2d6.png)
 
 - 정상적으로 Push 된 것을 확인할 수 있다.
 
@@ -119,15 +119,15 @@ git push
 
 ### 1. HydeJack Download
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/b1e5cb7f-df97-4fdd-98aa-b8aebb798ee3/Untitled.png)
+![image](https://user-images.githubusercontent.com/68031450/230423242-4b196122-fe33-4b9c-b67e-8dc6125fec33.png)
 
 - download 페이지로 이동
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/ccd9dd03-cfc9-4f54-bb80-ef9302f0f54e/Untitled.png)
+![image](https://user-images.githubusercontent.com/68031450/230423381-6c6addd2-1c75-4251-9c17-57894d1a7768.png)
 
 - zip으로 설치 후 압축 해제
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/90f525ef-6488-4301-910c-307cc7cae12a/Untitled.png)
+![image](https://user-images.githubusercontent.com/68031450/230423550-b004d293-8b44-4626-bcc4-ae0f90186816.png)
 
 - 압축 해제한 모든 파일들을 붙여넣기 (이미 존재할 경우 덮어쓰기 실행)
 - 이후 `bundle exec jekyll serve`로 테스트 진행
@@ -136,25 +136,25 @@ git push
 
 1. bundler::GemNotFound
 
-   ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/441dbbec-405a-4949-9264-c2256b8ee033/Untitled.png)
+   ![image](https://user-images.githubusercontent.com/68031450/230423629-882af38c-34b5-4b73-a26b-5c38cedb1e5c.png)
 
    - `bundler` 실행
 
 2. 파일 오류
 
-   ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/08853fc7-9179-4a45-8e97-344408d54971/Untitled.png)
+   ![image](https://user-images.githubusercontent.com/68031450/230423742-636288fc-02e9-47d8-bd21-51516bf13a91.png)
 
    - 루트 디렉토리에서 404.html, about.markdown, index.markdown 파일 삭제
 
 3. Dart Sass 오류
 
-   ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/9d77fcfd-7bd5-450f-b108-577532b7be86/Untitled.png)
+   ![image](https://user-images.githubusercontent.com/68031450/230423877-6817f925-b04e-40e7-981b-3979b94ccdfb.png)
 
    - 일단 스킵
 
 ### 3. `bundle exec jekyll serve`로 테스트 진행
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/94573299-1e46-4528-b89b-7533fd01ca59/Untitled.png)
+![image](https://user-images.githubusercontent.com/68031450/230424053-72758fd9-8449-43eb-ad7f-ea7a39e8bc01.png)
 
 - 정상적으로 동작하는 것을 확인할 수 있다.
 
@@ -167,9 +167,9 @@ git push
 ```
 
 - build 실패
-  ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/f062941d-0ac0-4f6d-9776-c50d42c89d21/Untitled.png)
+  ![image](https://user-images.githubusercontent.com/68031450/230424169-8ccd27fa-7311-481d-84ba-31b758511be2.png)
   - 해결법 : blog 폴더 내의 \_config.yml 파일 편집
-    ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/6ac0d085-f97f-48d0-a98f-52ad3dede6cf/Untitled.png)
+    ![image](https://user-images.githubusercontent.com/68031450/230424243-492084f0-0321-48d6-a6a9-7d9d40c7483e.png)
     - theme 부분을 주석 처리 (# 추가)
     - remote_theme 부분을 주석 해제 (# 제거)
     ```bash
@@ -180,7 +180,7 @@ git push
 
 ### 5. 확인
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/0a7c5627-f5c0-4991-9504-e24e205ef4f8/Untitled.png)
+![image](https://user-images.githubusercontent.com/68031450/230424438-248ae3da-4041-4201-9dc6-334e7ffccc65.png)
 
 - 정상적으로 Push 된 것을 알 수 있다! 이제 본격적으로 블로그를 활용해보자!
 
