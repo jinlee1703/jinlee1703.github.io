@@ -50,6 +50,8 @@ author:
 menu:
   - title: Development
     url: /development/
+  - title: Database
+    url: /database/
   - title: Study
     url: /study/
   - title: Essay
