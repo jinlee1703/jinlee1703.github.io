@@ -28,12 +28,3 @@ endunless %} {% for addon in addons %} {% case addon %} {% when 'about' %} {%
 include_cached components/about.html author=page.author %} {% when 'related' %}
 {% include if-non-null try="components/related-posts.html" %} {% when 'comments'
 %} {% include body/comments.html %} {% else %} {% endcase %} {% endfor %}
-
-<script
-  src="https://utteranc.es/client.js"
-  repo="jinu0137/jinu0137.github.io"
-  issue-term="url"
-  theme="github-light"
-  crossorigin="anonymous"
-  async
-></script>
