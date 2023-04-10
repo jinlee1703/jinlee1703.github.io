@@ -1,0 +1,52 @@
+current directory: D:/jinu0137.github.io/vendor/bundle/ruby/3.1.0/gems/wdm-0.1.1/ext/wdm
+C:/Ruby31-x64/bin/ruby.exe -I C:/Ruby31-x64/lib/ruby/3.1.0 extconf.rb
+checking for -lkernel32... yes
+checking for windows.h... yes
+checking for ruby.h... yes
+checking for HAVE_RUBY_ENCODING_H... yes
+checking for rb_thread_call_without_gvl()... yes
+creating Makefile
+
+current directory: D:/jinu0137.github.io/vendor/bundle/ruby/3.1.0/gems/wdm-0.1.1/ext/wdm
+make DESTDIR\= sitearchdir\=./.gem.20221229-20608-sw0v3 sitelibdir\=./.gem.20221229-20608-sw0v3 clean
+bash.exe: warning: could not find /tmp, please create!
+
+current directory: D:/jinu0137.github.io/vendor/bundle/ruby/3.1.0/gems/wdm-0.1.1/ext/wdm
+make DESTDIR\= sitearchdir\=./.gem.20221229-20608-sw0v3 sitelibdir\=./.gem.20221229-20608-sw0v3
+generating wdm_ext-x64-mingw-ucrt.def
+bash.exe: warning: could not find /tmp, please create!
+compiling entry.c
+compiling memory.c
+compiling monitor.c
+compiling queue.c
+compiling rb_change.c
+rb_change.c: In function 'extract_absolute_path_from_notification':
+rb_change.c:139:5: warning: 'RB_OBJ_TAINT' is deprecated: taintedness turned out to be a wrong idea. [-Wdeprecated-declarations]
+  139 |     OBJ_TAINT(path);
+      |     ^~~~~~~~~
+In file included from C:/Ruby31-x64/include/ruby-3.1.0/ruby/internal/core/rstring.h:30,
+                 from C:/Ruby31-x64/include/ruby-3.1.0/ruby/internal/arithmetic/char.h:29,
+                 from C:/Ruby31-x64/include/ruby-3.1.0/ruby/internal/arithmetic.h:23,
+                 from C:/Ruby31-x64/include/ruby-3.1.0/ruby/ruby.h:27,
+                 from C:/Ruby31-x64/include/ruby-3.1.0/ruby.h:38,
+                 from wdm.h:22,
+                 from rb_change.c:4:
+C:/Ruby31-x64/include/ruby-3.1.0/ruby/internal/fl_type.h:116:30: note: declared here
+  116 | #define RB_OBJ_TAINT         RB_OBJ_TAINT
+      |                              ^~~~~~~~~~~~
+C:/Ruby31-x64/include/ruby-3.1.0/ruby/internal/fl_type.h:116:30: note: in definition of macro 'RB_OBJ_TAINT'
+  116 | #define RB_OBJ_TAINT         RB_OBJ_TAINT
+      |                              ^~~~~~~~~~~~
+compiling rb_monitor.c
+rb_monitor.c: In function 'rb_monitor_run_bang':
+rb_monitor.c:509:29: warning: implicit declaration of function 'rb_thread_call_without_gvl' [-Wimplicit-function-declaration]
+  509 |         waiting_succeeded = rb_thread_call_without_gvl(wait_for_changes, monitor->process_event, stop_monitoring, monitor);
+      |                             ^~~~~~~~~~~~~~~~~~~~~~~~~~
+compiling utils.c
+compiling wdm.c
+linking shared-object wdm_ext.so
+
+current directory: D:/jinu0137.github.io/vendor/bundle/ruby/3.1.0/gems/wdm-0.1.1/ext/wdm
+make DESTDIR\= sitearchdir\=./.gem.20221229-20608-sw0v3 sitelibdir\=./.gem.20221229-20608-sw0v3 install
+bash.exe: warning: could not find /tmp, please create!
+/usr/bin/install -c -m 0755 wdm_ext.so ./.gem.20221229-20608-sw0v3
