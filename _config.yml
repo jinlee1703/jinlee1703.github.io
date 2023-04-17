@@ -52,6 +52,12 @@ menu:
     url: /development/
   - title: Database
     url: /database/
+  - title: CI/CD
+    url: /ci-cd/
+  - title: Infra
+    url: /infra/
+  - title: Trend
+    url: /trend/
   - title: Study
     url: /study/
   - title: Essay
