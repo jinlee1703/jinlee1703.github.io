@@ -184,3 +184,109 @@ public class GenericDemo {
 &nbsp; new Integer는 기본 데이터 타입은 int를 참조 데이터 타입으로 변환해주는 역할을 수행한다. 이러한 클래스를 래퍼(wrapper) 클래스라고 하고, 덕분에 기본 데이터 타입을 사용할 수 없는 제네릭에서 int를 사용할 수 있다.
 
 ## 제네릭의 생략
+
+&nbsp; 제네릭은 생략이 가능하다. 아래의 두 가지 코드는 정확히 동일하게 동작하는 코드이다.
+
+```java
+EmployeeInfo e = new EmployeeInfo(1);
+Integer i = new Integer(10);
+Person<EmployeeInfo, Integer> p1 = new Person<EmployeeInfo, Integer>(e, i);
+Person p2 = new Person(e, i);
+```
+
+&nbsp; e와 i의 데이터 타입을 알고 있기 때문에 제네릭을 생략할 수 있다.
+
+### 메소드에 적용
+
+&nbsp; 제네릭을 메소드에 적용할 수도 있다.
+
+```java
+class EmployeeInfo{
+    public int rank;
+    EmployeeInfo(int rank){ this.rank = rank; }
+}
+class Person<T, S>{
+    public T info;
+    public S id;
+    Person(T info, S id){
+        this.info = info;
+        this.id = id;
+    }
+    public <U> void printInfo(U info){
+        System.out.println(info);
+    }
+}
+public class GenericDemo {
+    public static void main(String[] args) {
+        EmployeeInfo e = new EmployeeInfo(1);
+        Integer i = new Integer(10);
+        Person<EmployeeInfo, Integer> p1 = new Person<EmployeeInfo, Integer>(e, i);
+        p1.<EmployeeInfo>printInfo(e);
+        p1.printInfo(e);
+    }
+}
+```
+
+&nbsp; 메소드에 제네릭을 적용함으로써 메소드의 매개 변수의 타입을 외부에서 선언할 수 있다.
+
+## 제네릭의 제한
+
+### extends
+
+&nbsp; 제네릭으로 올 수 있는 데이터 타입을 특정 클래스의 자식으로 제한할 수도 있다.
+
+```java
+abstract class Info{
+    public abstract int getLevel();
+}
+class EmployeeInfo extends Info{
+    public int rank;
+    EmployeeInfo(int rank){ this.rank = rank; }
+    public int getLevel(){
+        return this.rank;
+    }
+}
+class Person<T extends Info>{
+    public T info;
+    Person(T info){ this.info = info; }
+}
+public class GenericDemo {
+    public static void main(String[] args) {
+        Person p1 = new Person(new EmployeeInfo(1));
+        Person<String> p2 = new Person<String>("부장");
+    }
+}
+```
+
+&nbsp; 위 코드에서 `class Person<T extends Info> {`라는 부분을 볼 수 있는데, 이 부분의 의미는 Person 클래스의 T는 Info 클래스 혹은 그 자식만 올 수 있도록 하는 것이다.
+<br>
+&nbsp; 또한, extends는 상속(extends) 뿐만 아니라 구현(implements)의 관계에서도 사용할 수 있다.
+
+```java
+interface Info{
+    int getLevel();
+}
+class EmployeeInfo implements Info{
+    public int rank;
+    EmployeeInfo(int rank){ this.rank = rank; }
+    public int getLevel(){
+        return this.rank;
+    }
+}
+class Person<T extends Info>{
+    public T info;
+    Person(T info){ this.info = info; }
+}
+public class GenericDemo {
+    public static void main(String[] args) {
+        Person p1 = new Person(new EmployeeInfo(1));
+        Person<String> p2 = new Person<String>("부장");
+    }
+}
+```
+
+&nbsp; 위 코드와 같이 제네릭을 통해 interface를 구현하는 클래스를 대상으로 데이터 타입을 정의할 수도 있다.
+
+## Reference
+
+- [https://opentutorials.org/course/1223/6237](https://opentutorials.org/course/1223/6237)
