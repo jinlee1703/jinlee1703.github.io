@@ -14,7 +14,7 @@ hide_last_modified: true
 - 웹 템플릿 엔진은 웹 템플릿들과 웹 컨텐츠 정보를 처리하기 위해 설계된 소프트웨어
 - 웹 템플릿 엔진은 view code(html)와 data logic code(db connection)을 분리해주는 기능을 함
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/733ae9cf-e33b-4d67-99a6-c6d52852a897/Untitled.png)
+![image](https://user-images.githubusercontent.com/68031450/233296551-02725a0a-db04-46e4-a9e1-ee4932319a18.png)
 
 ## 템플릿 엔진의 필요성
 
