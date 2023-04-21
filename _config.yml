@@ -56,6 +56,8 @@ menu:
     url: /ci-cd/
   - title: Infra
     url: /infra/
+  - title: Network
+    url: /network/
   - title: Trend
     url: /trend/
   - title: Study
