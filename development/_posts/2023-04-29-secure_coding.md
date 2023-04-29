@@ -265,7 +265,7 @@ try [
 - DNS Lookup에 의존한 보안결정
 - 취약한 API 사용
 
-## Rerencee
+## Reference
 
 ---
 
