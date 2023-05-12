@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 무결성(Integrity)과 Relationship
+title: 무결성(Integrity)
 description: >
   본 게시글은 소프트웨어 마에스트로 과정에서 김태완 멘토님의 특강을 듣고 내용을 보충하여 작성한 내용입니다.
 sitemap: false
