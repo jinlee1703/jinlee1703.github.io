@@ -95,4 +95,3 @@ public class UserController {
 ## Reference
 
 - [https://velog.io/@borab/Spring-boot-Swagger-%EC%84%A4%EC%A0%95-gradle](https://velog.io/@borab/Spring-boot-Swagger-%EC%84%A4%EC%A0%95-gradle)
-- []()
