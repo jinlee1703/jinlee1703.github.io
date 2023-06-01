@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Spring API 문서화
+title: API 문서 자동화 (Feat. Spring API 문서화 도구 비교)
 description: >
   이전에 [테크니컬 라이팅 기술과 테크니컬 라이터라는 직업에 관련된 내용의 게시글](https://jinu0137.github.io/study/2023-04-22-technical_writing/)을 작성한 적이 있다. 이번 문서에서는 테크니컬 라이팅 업무 중 하나인 API 문서화와 Spring 프로젝트에서 API 문서화를 하기 위해 어떤 프레임워크를 사용해야 되는 지에 대해서 알아보려고 한다.
 sitemap: false
@@ -125,4 +125,3 @@ hide_last_modified: true
 
 - [https://backtony.github.io/spring/2021-10-15-spring-test-3/](https://backtony.github.io/spring/2021-10-15-spring-test-3/)
 - [https://velog.io/@monkeydugi/Spring-Rest-Docs-%EC%B1%84%ED%83%9D-%EC%9D%B4%EC%9C%A0](https://velog.io/@monkeydugi/Spring-Rest-Docs-%EC%B1%84%ED%83%9D-%EC%9D%B4%EC%9C%A0)
-- []()
