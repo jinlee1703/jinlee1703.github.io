@@ -21,4 +21,4 @@ hide_last_modified: true
 
 ## 요약
 
-&nbsp; **Spring은 대규모 Java 애플리케이션을 개발하는 데 사용되는 프레임워크**이고, **Spring Boot는 Spring 기반의 어플리케이셔능ㄹ 더 빠르고 간단하게 구축하고 실행하기 위한 프로젝트**이다.
+&nbsp; **Spring은 대규모 Java 애플리케이션을 개발하는 데 사용되는 프레임워크**이고, **Spring Boot는 Spring 기반의 어플리케이션을 더 빠르고 간단하게 구축하고 실행하기 위한 프로젝트**이다.
