@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Spring Boot에 Swagger 설정하기
+title: Swagger 설정 시 Spring 버전에 따른 설정 오류
 description: >
   소프트웨어 마에스트로 과정을 진행하면서 본격적인 팀 프로젝트를 진행하기 전, 간단하게 미니 프로젝트를 진행하기로 하였다. 나는 백엔드 파트를 담당하여 Spring Boot를 통한 API 서버 개발을 하게 되었고, Swagger를 통해 API 문서 생성을 자동화하고자 한다.
 sitemap: false
