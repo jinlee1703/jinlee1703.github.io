@@ -111,6 +111,12 @@ hide_last_modified: true
 
 &nbsp; 우리가 만든 Collection에 대한 API 문서가 생성되었다!
 
+## 예시
+
+&nbsp; 이건 필자가 작성한 Postman API 명세서이다. 참고하길 바란다.
+
+- [https://documenter.getpostman.com/view/28119947/2s93z58PtM#5521998a-99e5-4e69-b641-7c35ce5aed2f](https://documenter.getpostman.com/view/28119947/2s93z58PtM#5521998a-99e5-4e69-b641-7c35ce5aed2f)
+
 ---
 
 ## Reference
