@@ -3,14 +3,14 @@
 layout: list
 
 # The title of the tag's page.
-title: Infra
+title: AWS
 
 # The name of the tag, used in a post's front matter (e.g. tags: [<slug>]).
-slug: infra
+slug: aws
 
 # (Optional) Write a short (~150 characters) description of this featured tag.
 description: >
-  인프라와 관련된 게시글을 모아놓은 카테고리입니다.
+  AWS(Amazon Web Service)와 관련된 게시글을 모아놓은 카테고리입니다.
 
 # (Optional) You can disable grouping posts by date.
 # no_groups: true
