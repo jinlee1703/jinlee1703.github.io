@@ -51,16 +51,20 @@ class ChildClass extends ParentClass {
 }
 ```
 
-<div class="mermaid"> 
-  flowchart LR
-    A --> B
-</div>
+<pre><code class="language-mermaid">classDiagram
 
-```mermaid
-flowchart LR
-	A --> B
-```
+ParentClass <|-- ChildClass
 
-<pre><code class="language-mermaid">flowchart LR
-    A --&gt; B
+class ParentClass {
+  <<abstract>>
+  field1
+  field2$
+  methodA()*
+  methodB()
+}
+
+class ChildClass {
+  methodA()
+  methodC()$
+}
 </code></pre>
