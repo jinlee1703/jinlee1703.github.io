@@ -53,3 +53,4 @@ end
 gem 'wdm' if Gem.win_platform?
 gem "tzinfo-data" if Gem.win_platform?
 
+gem "jekyll-mermaid"

@@ -425,3 +425,6 @@ jekyll_compose:
       links:
         - title: Project Link
           url: https://example.com
+
+mermaid:
+  src: "path/to/mermaid.js"
