@@ -51,7 +51,8 @@ class ChildClass extends ParentClass {
 }
 ```
 
-<pre><code class="language-mermaid">classDiagram
+```mermaid
+classDiagram
 
 ParentClass <|-- ChildClass
 
@@ -67,4 +68,4 @@ class ChildClass {
   methodA()
   methodC()$
 }
-</code></pre>
+```
