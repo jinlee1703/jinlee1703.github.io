@@ -51,18 +51,7 @@ class ChildClass extends ParentClass {
 }
 ```
 
-```mermaid
-graph TD;
-    A-->B;
-    A-->C;
-    B-->D;
-    C-->D;
-```
-
-{% mermaid %}
-graph TD;
-A-->B;
-A-->C;
-B-->D;
-C-->D;
-{% endmermaid %}
+<div class="mermaid"> 
+  flowchart LR
+    A --> B
+</div>
