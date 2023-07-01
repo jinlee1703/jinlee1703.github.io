@@ -55,3 +55,8 @@ class ChildClass extends ParentClass {
   flowchart LR
     A --> B
 </div>
+
+```mermaid
+flowchart LR
+	A --> B
+```
