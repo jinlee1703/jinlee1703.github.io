@@ -50,12 +50,14 @@ author:
 menu:
   - title: Development
     url: /development/
-  - title: Database
-    url: /database/
-  - title: CI/CD
-    url: /ci-cd/
-  - title: Infra
-    url: /infra/
+  - title: RDBMS
+    url: /rdbms/
+  - title: NoSQL
+    url: /nosql/
+  - title: DevOps
+    url: /devops/
+  - title: AWS
+    url: /aws/
   - title: Network
     url: /network/
   - title: Trend
