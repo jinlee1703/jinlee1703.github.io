@@ -60,3 +60,7 @@ class ChildClass extends ParentClass {
 flowchart LR
 	A --> B
 ```
+
+<pre><code class="language-mermaid">flowchart LR
+    A --&gt; B
+</code></pre>
