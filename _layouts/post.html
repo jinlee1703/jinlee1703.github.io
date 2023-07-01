@@ -37,7 +37,6 @@ include_cached components/about.html author=page.author %} {% when 'related' %}
   crossorigin="anonymous"
   async
 ></script>
-{% if page.mermaid %}
 <script>
   mermaid.initialize({ startOnLoad: true });
   window.mermaid.init(
@@ -45,4 +44,3 @@ include_cached components/about.html author=page.author %} {% when 'related' %}
     document.querySelectorAll(".language-mermaid")
   );
 </script>
-{% endif %}
