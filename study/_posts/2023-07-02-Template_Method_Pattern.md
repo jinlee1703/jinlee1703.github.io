@@ -122,7 +122,7 @@ AbstractDisplay <|-- StringDisplay
   }
   ```
 
-- **`CharDisplay` 클래스**
+- **`StringDisplay` 클래스**
 
   ```java
   public class StringDisplay extends AbstractDisplay {
@@ -211,7 +211,7 @@ AbstractDisplay <|-- StringDisplay
 
 ### AbstractClass
 
-&nbsp; **추상클래스**. 템플릿 메서드를 구현하고, 그 메서드에서 사용할 추상 메서드를 선언한다. 이 추상 메서드는 하위 클래스인 `ConcreateClass`에서 구현된다. 위의 예제에서는 AbstractDisplay 클래스가 AbstractClass이다.
+&nbsp; **추상클래스**. 템플릿 메서드를 구현하고, 그 메서드에서 사용할 추상 메서드를 선언한다. 이 추상 메서드는 하위 클래스인 `ConcreteClass`에서 구현된다. 위의 예제에서는 AbstractDisplay 클래스가 AbstractClass이다.
 
 ### ConcreteClass
 
@@ -250,7 +250,7 @@ AbstractClass <|-- ConcreteClass
 
 ### 상위 클래스와 하위 클래스 간의 긴밀한 연계
 
-- 상위 상위 클래스에서 선언된 추상 메서드를 실제로 하위 클래스에서 구현할 때는 그 메소드가 어떤 타이밍에 호출이 되는 지 이해를 해야함
+- 상위 클래스에서 선언된 추상 메서드를 실제로 하위 클래스에서 구현할 때는 그 메소드가 어떤 타이밍에 호출이 되는 지 이해를 해야함
   - ex) `CharDisplay` 클래스와 `StringDisplay` 클래스에서 `open()`, `close()`,  `print()` 메서드를 구현하고 있고, 이를 통해 생성한 인스턴스에서 `AbstractDisplay` 클래스에서 상속받은 `display()` 메서드에서 `open()`, `close()`,  `print()` 메서드가 실행되고 있기 때문에 `display()` 메서드의 동작 과정을 이해하고 있어야 `open()`, `close()`,  `print()` 메서드를 원하는대로 구현할 수 있음
 
 ### 하위 클래스를 상위 클래스와 동일시
@@ -297,11 +297,10 @@ AbstractClass <|-- ConcreteClass
 
 ### java.io.InputStream
 
-![image](https://user-images.githubusercontent.com/68031450/250328865-d131e702-9ee5-4fcc-9a0b-6fcb122898c0.png)
+![image](https://user-images.githubusercontent.com/68031450/250350246-870d626f-51c3-4f08-a45a-9a47b8e84b53.png)
 
 &nbsp; `java.io.InputStream` 클래스는 Java에서 바이트 기반 입력 스트림을 위해 사용되는 클래스들의 상위 클래스(추상 클래스)이다. 이 클래스를 사용하면 파일, 네트워크 연결, 내부 배열 등 다양한 소스에서 데이터를 읽을 수 있다.
-&nbsp; `java.io.InputStream` 클래스는 추상 클래스이고, Template Method Pattern을 사용한다. JDK API Reference를 살펴보면 추상 메서드를 확인해볼 수 있는데 `read()` 메서드는 추상 메서드로 선언되어 있다. 이를 통해 InputStream을 상속 받는 하위 클래스들은 각각 `read()` 메서드를 내부 동작을 직접 구현한다는 것을 알 수 있다.
-
+&nbsp; `java.io.InputStream` 클래스는 추상 클래스이고, Template Method Pattern을 사용한다. JDK API Reference를 살펴보면 추상 메서드를 확인해볼 수 있는데 `read()` 메서드는 추상 메서드로 선언되어 있다. InputStream을 상속 받는 하위 클래스들은 각각 `read()` 메서드를 내부 동작을 직접 구현한다는 것을 알 수 있고, 그 이외의 메서드 중 templateMethod가 있음을 유추할 수 있다.
 
 ## Template Method Pattern를 활용하는 Design Pattern
 
