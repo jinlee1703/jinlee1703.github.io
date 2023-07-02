@@ -45,6 +45,7 @@ hide_last_modified: false
 classDiagram
 
 class AbstractDisplay {
+  <<Abstract>>
   open()*
   print()*
   close()*
@@ -222,6 +223,7 @@ AbstractDisplay <|-- StringDisplay
 classDiagram
 
 class AbstractClass {
+  <<Abstract>>
   method1()*
   method2()*
   method3()*
