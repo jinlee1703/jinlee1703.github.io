@@ -257,12 +257,6 @@ AbstractClass <|-- ConcreteClass
   - ex) `CharDisplay` 클래스와 `StringDisplay` 클래스로 생성한 인스턴스 모두 `AbstractDisplay` 타입의 변수에 대입하여 `display()` 메서드를 호출하고 있음
 - 상위 클래스형 변수에 하위 클래스의 인스턴스 중 어느 것을 대입해도 제대로 동작할 수 있게 하는 원칙을 [**LSP(The Liskov Substitution Principle)**](https://jinu0137.github.io/development/2023-04-12-solid_lsp/)라고 함(단, 구현을 상속할 경우에는 LSP를 엄격하게 지키는 것은 불가능함)
 
-## Template Method Pattern의 활용
-
-- **Factory Method Pattern** : Template Method Pattern을 인스턴스 생성에 응용함
-- **Strategy Pattern** : Template Method Pattern에서는 '상속'을 이용하여 프로그램 동작을 규정하지만, Strategy Pattern은 '위임'을 이용하여 프로그램의 동작을 변경함, 프로그램 일부를 변경하기보다는 알고리즘 전체를 모두 전환함
-
----
 # 생각 바꾸기
 
 ## 상위 클래스의 관점과 하위 클래스의 관점
@@ -280,9 +274,9 @@ AbstractClass <|-- ConcreteClass
 
 &nbsp; 하위 클래스에는 상위 클래스에서 선언한 추상 메서드를 구현할 책임이 있다고 할 수 있다. 이것을 **subclass responsibility(하위 클래스의 책임)**이라고 한다.
 
-```
-Java에서 @Override 어노테이션은 해당 메서드가 상위 클래스나 인터페이스에서 선언된 메서드를 오버라이드했음을 나타낸다. 이 어노테이션을 발견하면, 어떤 책임을 맡은 메서드인지 주의하며 코드를 읽어보자.
-```
+<p style="background-color: #cccccc;">
+&nbsp; Java에서 @Override 어노테이션은 해당 메서드가 상위 클래스나 인터페이스에서 선언된 메서드를 오버라이드했음을 나타낸다. 이 어노테이션을 발견하면, 어떤 책임을 맡은 메서드인지 주의하며 코드를 읽어보자.
+</p>
 
 ## 추상 클래스
 
@@ -293,12 +287,31 @@ Java에서 @Override 어노테이션은 해당 메서드가 상위 클래스나 
 &nbsp; 상위 클래스와 하위 클래스는 서로 협조하면서 프로그램을 구축한다. 상위 클래스에서 많이 기술하면 하위 클래스를 작성하기 편해지지만, 하위 클래스의 자유가 줄어든다. 반대로 상위 클래스에서 적게 기술하게 되면 하위 클래스를 작성하기 힘들어지고, 각각의 하위 클래스에서 처리 기술이 중복되기 쉬워진다.<br>
 &nbsp; Template Method Pattern은 처리 내용의 뼈대는 상위 클래스에 기술하고, 구체적인 내용은 하위 클래스에 기술하도록 하고 있다.
 
-```
-어떤 수준에서 처리를 나눌지, 어떤 처리를 상위 클래스에 두고 어떤 처리를 하위 클래스에 둘지를 규정한 매뉴얼이 있지는 않다. 프로그램을 작성하기 전 주의 깊은 설계가 필요할 것이다.
-```
+<p style="background-color: #cccccc;">
+&nbsp; 어떤 수준에서 처리를 나눌지, 어떤 처리를 상위 클래스에 두고 어떤 처리를 하위 클래스에 둘지를 규정한 매뉴얼이 있지는 않다. 프로그램을 작성하기 전 주의 깊은 설계가 필요할 것이다.
+</p>
+
+## Template Method 활용 예시
+
+### java.io.InputStream
+
+![image](https://user-images.githubusercontent.com/68031450/250328865-d131e702-9ee5-4fcc-9a0b-6fcb122898c0.png)
+
+&nbsp; `java.io.InputStream` 클래스는 Java에서 바이트 기반 입력 스트림을 위해 사용되는 클래스들의 상위 클래스(추상 클래스)이다. 이 클래스를 사용하면 파일, 네트워크 연결, 내부 배열 등 다양한 소스에서 데이터를 읽을 수 있다.
+&nbsp; `java.io.InputStream` 클래스는 추상 클래스이고, Template Method Pattern을 사용한다. JDK API Reference를 살펴보면 추상 메서드를 확인해볼 수 있는데 `read()` 메서드는 추상 메서드로 선언되어 있다. 이를 통해 InputStream을 상속 받는 하위 클래스들은 각각 `read()` 메서드를 내부 동작을 직접 구현한다는 것을 알 수 있다.
+
+
+## Template Method Pattern를 활용하는 Design Pattern
+
+- **Factory Method Pattern** : Template Method Pattern을 인스턴스 생성에 응용함
+- **Strategy Pattern** : Template Method Pattern에서는 '상속'을 이용하여 프로그램 동작을 규정하지만, Strategy Pattern은 '위임'을 이용하여 프로그램의 동작을 변경함, 프로그램 일부를 변경하기보다는 알고리즘 전체를 모두 전환함
 
 ---
 
 ## Reference
 
 - 유키 히로시, 2022, JAVA 언어로 배우는 디자인 패턴 입문: 쉽게 배우는 GoF의 23가지 디자인 패턴
+
+## Repository
+
+- [https://github.com/jinu0137/design_pattern_study/tree/main/src/template_method_pattern](https://github.com/jinu0137/design_pattern_study/tree/main/src/template_method_pattern)
