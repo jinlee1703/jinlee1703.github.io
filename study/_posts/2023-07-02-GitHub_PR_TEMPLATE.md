@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Template Method Pattern
+title: GitHub Pull Request Template 생성 방법
 description: >
    소프트웨어 마에스트로 14기 팀 프로젝트에서 나는 백엔드 파트를 담당하여 Spring Boot를 통한 API 서버 개발을 하게 되었다. GitHub 레포지토리에서 Pull Request를 통해 base 브랜치에 분기 브랜치를 merge하려고 하는데, Pull Request 템플릿을 만들기 위해 이 게시글을 작하게 되었다.
 sitemap: false
