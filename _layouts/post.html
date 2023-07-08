@@ -32,15 +32,6 @@ layout: base
 {% assign minor = version[1] | plus:0 %}
 {% assign patch = version[2] | plus:0 %}
 
-<div style="text-align:right; text-align: center">
-  <a href="https://hits.seeyoufarm.com/{{ site.url | remove_first: 'https://' | remove_first: 'http://' }}{{ page.url }}"
-    target="_blank">
-    <img
-      src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https://{{ site.url | remove_first: 'https://' | remove_first: 'http://' }}{{ page.url }}&count_bg=%23293786&title_bg=%23555555&icon=bilibili.svg&icon_color=%23E7E7E7&title=.&edge_flat=false" />
-  </a>
-</div>
-
-
 {% include_cached components/post.html post=page no_link_title=true no_excerpt=true hide_image=page.hide_image
 hide_description=page.hide_description %}
 
@@ -63,4 +54,10 @@ hide_description=page.hide_description %}
 {% endcase %}
 {% endfor %}
 
-
+<div style="text-align:right; text-align: center">
+  <a href="https://hits.seeyoufarm.com/{{ site.url | remove_first: 'https://' | remove_first: 'http://' }}{{ page.url }}"
+    target="_blank">
+    <img
+      src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https://{{ site.url | remove_first: 'https://' | remove_first: 'http://' }}{{ page.url }}&count_bg=%23293786&title_bg=%23555555&icon=bilibili.svg&icon_color=%23E7E7E7&title=.&edge_flat=false" />
+  </a>
+</div>
