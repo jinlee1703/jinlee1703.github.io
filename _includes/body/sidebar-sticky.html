@@ -4,7 +4,7 @@
         {% if site.logo %}
         <a class="no-hover" href="{{ '/' | relative_url }}" tabindex="-1">
             <img src="{% include_cached smart-url url=site.logo %}" class="avatar"
-                alt="{{ site.short_title | default:site.title }}" width="130" height="130" loading="lazy" />
+                alt="{{ site.short_title | default:site.title }}" loading="lazy" />
         </a>
         {% endif %}
         <!--블로그타이틀-->
@@ -37,6 +37,4 @@
     <div class="sidebar-social">
         {% include components/social.html author=author %}
     </div>
-
-
 </div>
