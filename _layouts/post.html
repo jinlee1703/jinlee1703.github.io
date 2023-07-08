@@ -33,7 +33,21 @@ layout: base
 {% include_cached components/post.html post=page no_link_title=true no_excerpt=true hide_image=page.hide_image
 hide_description=page.hide_description %}
 
+<div style="text-align:right; text-align: center">
+  <a href="https://hits.seeyoufarm.com/{{ site.url | remove_first: 'https://' | remove_first: 'http://' }}{{ page.url }}"
+    target="_blank">
+    <img
+      src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https://{{ site.url | remove_first: 'https://' | remove_first: 'http://' }}{{ page.url }}&count_bg=%23293786&title_bg=%23555555&icon=bilibili.svg&icon_color=%23E7E7E7&title=.&edge_flat=false" />
+  </a>
+</div>
+
 {% include components/dingbat.html %}
+
+<div class="col-lg-8 col-md-10 mx-auto">
+  <script src="https://utteranc.es/client.js" repo="jinu0137/jinu0137.github.io" issue-term="url" theme="github-light"
+    crossorigin="anonymous" async>
+    </script>
+</div>
 
 {% assign addons = page.addons | default:site.hydejack.post_addons %}
 {% unless addons %}
@@ -51,19 +65,3 @@ hide_description=page.hide_description %}
 {% else %}
 {% endcase %}
 {% endfor %}
-
-<div style="text-align:right; text-align: center">
-  <a href="https://hits.seeyoufarm.com/{{ site.url | remove_first: 'https://' | remove_first: 'http://' }}{{ page.url }}"
-    target="_blank">
-    <img
-      src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https://{{ site.url | remove_first: 'https://' | remove_first: 'http://' }}{{ page.url }}&count_bg=%23293786&title_bg=%23555555&icon=bilibili.svg&icon_color=%23E7E7E7&title=.&edge_flat=false" />
-  </a>
-</div>
-
-<hr>
-
-<div class="col-lg-8 col-md-10 mx-auto">
-  <script src="https://utteranc.es/client.js" repo="jinu0137/jinu0137.github.io" issue-term="url" theme="github-light"
-    crossorigin="anonymous" async>
-    </script>
-</div>
