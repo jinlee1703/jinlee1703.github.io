@@ -3,14 +3,14 @@
 layout: list
 
 # The title of the tag's page.
-title: NoSQL
+title: Web
 
 # The name of the tag, used in a post's front matter (e.g. tags: [<slug>]).
-slug: nosql
+slug: web
 
 # (Optional) Write a short (~150 characters) description of this featured tag.
 description: >
-  NoSQL과 관련된 게시글을 모아놓은 카테고리입니다.
+  웹 개발 및 Java과 관련된 게시글을 모아놓은 카테고리입니다.
 
 # (Optional) You can disable grouping posts by date.
 # no_groups: true

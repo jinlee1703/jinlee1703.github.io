@@ -3,14 +3,14 @@
 layout: list
 
 # The title of the tag's page.
-title: Study
+title: etc.
 
 # The name of the tag, used in a post's front matter (e.g. tags: [<slug>]).
-slug: study
+slug: etc
 
 # (Optional) Write a short (~150 characters) description of this featured tag.
 description: >
-  개발에 대한 학습한 내용들에 대한 게시글을 모아놓은 카테고리입니다.
+  기타 CS 지식에 대해 학습한 내용들에 대한 게시글을 모아놓은 카테고리입니다.
 
 # (Optional) You can disable grouping posts by date.
 # no_groups: true
