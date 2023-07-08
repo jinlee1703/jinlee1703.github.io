@@ -17,20 +17,24 @@
 layout: compress
 ---
 
+{% assign plugins = site.plugins | default:site.gems %} {% assign author =
+site.data.authors[page.author] | default:site.data.authors.first[1] |
+default:site.author %} {% assign image = page.accent_image |
+default:site.accent_image | default:'/assets/img/sidebar-bg.jpg' %} {% assign
+color = page.accent_color | default:site.accent_color |
+default:'rgb(79,177,186)' %} {% assign theme_color = page.theme_color |
+default:site.theme_color | default:'rgb(8,46,57)' %}
 <link rel="alternate" type="application/rss+xml" href="{{ site.url }}/feed.xml" title="{{ site.title }} Feed">
 <meta name="naver-site-verification" content="7f1636e9c9d9f342e809aad11f7af55c80336639" />
 <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
-
 <head>
   {% include head/index.html %}
 </head>
 
 <body class="{% include_cached base-classes %}">
   {% include body/index.html %}
-  
-  <div class="sidebar">
-    <a href="https://hits.seeyoufarm.com">
-      <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fjinu0137.github.io%2Fhit-counter&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false" />
-    </a>
-  </div>
+
+  <a href="https://hits.seeyoufarm.com">
+    <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fjinu0137.github.io%2Fhit-counter&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false" />
+  </a>
 </body>
