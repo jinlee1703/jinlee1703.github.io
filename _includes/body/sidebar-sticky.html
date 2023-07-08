@@ -1,7 +1,7 @@
 <div class="sidebar-sticky">
     <div class="sidebar-about" style="margin-bottom: 10px;">
         <!--블로그타이틀-->
-        <div class="sidebartitle" style="margin-bottom: 45px; margin-left: 45px; margin-right: 45px;">
+        <div class="sidebartitle">
             <a class="sidebar-title" href="{{ '/' | relative_url }}">
                 <h2 class="h1">{{ site.short_title | default:site.title }}</h2>
             </a>
@@ -9,7 +9,7 @@
         </div>
         <!--블로그로고-->
         {% if site.logo %}
-        <a class="no-hover" style="margin-bottom: 50px;" href="{{ '/' | relative_url }}" tabindex="-1">
+        <a class="no-hover" href="{{ '/' | relative_url }}" tabindex="-1">
             <img src="{% include_cached smart-url url=site.logo %}" class="avatar"
                 alt="{{ site.short_title | default:site.title }}" width="130" height="130" loading="lazy" />
         </a>
