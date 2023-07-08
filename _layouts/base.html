@@ -17,13 +17,12 @@
 layout: compress
 ---
 
-{% assign plugins = site.plugins | default:site.gems %} {% assign author =
-site.data.authors[page.author] | default:site.data.authors.first[1] |
-default:site.author %} {% assign image = page.accent_image |
-default:site.accent_image | default:'/assets/img/sidebar-bg.jpg' %} {% assign
-color = page.accent_color | default:site.accent_color |
-default:'rgb(79,177,186)' %} {% assign theme_color = page.theme_color |
-default:site.theme_color | default:'rgb(8,46,57)' %}
+{% assign plugins = site.plugins | default:site.gems %}
+{% assign author = site.data.authors[page.author] | default:site.data.authors.first[1] | default:site.author %}
+{% assign image = page.accent_image | default:site.accent_image | default:'/assets/img/sidebar-bg.jpg' %}
+{% assign color = page.accent_color | default:site.accent_color | default:'rgb(79,177,186)' %}
+{% assign theme_color = page.theme_color | default:site.theme_color | default:'rgb(8,46,57)' %}
+
 <link rel="alternate" type="application/rss+xml" href="{{ site.url }}/feed.xml" title="{{ site.title }} Feed">
 <meta name="naver-site-verification" content="7f1636e9c9d9f342e809aad11f7af55c80336639" />
 <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
