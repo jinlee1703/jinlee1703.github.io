@@ -123,6 +123,12 @@ sequenceDiagram
     Server-->>-Client: 요청에 대한 응답
 ```
 
+## JWT 검증 사이트
+
+&nbsp; 마지막으로 JSON Web Tokens(JWT)을 디버그하고, 디코딩하며, 검증하는 데 도움이 되는 웹사이트를 소개한다.
+
+- [https://jwt.io/](https://jwt.io/)
+
 ---
 
 ## Reference
