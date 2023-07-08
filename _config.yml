@@ -48,24 +48,20 @@ author:
 
 # Add links to the sidebar.
 menu:
-  - title: Development
-    url: /development/
-  - title: RDBMS
-    url: /rdbms/
-  - title: NoSQL
-    url: /nosql/
+  - title: Web
+    url: /web/
+  - title: Database
+    url: /database/
   - title: DevOps
     url: /devops/
-  - title: AWS
-    url: /aws/
   - title: Network
     url: /network/
   - title: Trend
     url: /trend/
-  - title: Study
-    url: /study/
   - title: Essay
     url: /essay/
+  - title: etc.
+    url: /etc/
   - title: About
     url: /about/
 
