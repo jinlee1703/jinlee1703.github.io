@@ -424,3 +424,5 @@ jekyll_compose:
 
 mermaid:
   src: "path/to/mermaid.js"
+
+og_image: "/assets/img/logo.png"
