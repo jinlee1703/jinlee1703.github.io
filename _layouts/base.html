@@ -26,6 +26,7 @@ default:'rgb(79,177,186)' %} {% assign theme_color = page.theme_color |
 default:site.theme_color | default:'rgb(8,46,57)' %}
 <link rel="alternate" type="application/rss+xml" href="{{ site.url }}/feed.xml" title="{{ site.title }} Feed">
 <meta name="naver-site-verification" content="ca0c4544519b60c284a8b0ff51763d1b092d6eee" />
+<meta property="og:image" content="{{ site.og_image }}">
 <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
 <head>
   {% include head/index.html %}
