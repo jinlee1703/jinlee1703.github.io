@@ -28,6 +28,8 @@ hide_last_modified: true
 
 ![image](https://user-images.githubusercontent.com/68031450/256870791-18f955eb-0210-4325-8c4b-79ff4f7e142d.png)
 
+[https://www.inflearn.com/infcon-2023/schedule/share?id=665451&hash=binarywooo%40f8b686bf&name=%EC%A7%80%EB%88%84%EB%A6%AC](https://www.inflearn.com/infcon-2023/schedule/share?id=665451&hash=binarywooo%40f8b686bf&name=%EC%A7%80%EB%88%84%EB%A6%AC)
+
 &nbsp; 내가 직접 담아 본 시간표는 위와 같다. 인프콘의 모든 세션이 훌륭하지만, 그 중에서 나한테 어떤 세션이 당장 필요하고, 가장 도움이 되며, 내 미래에 영향을 줄 수 있을까라는 고민을 매우 많이 했다. 결과적으로는 백엔드 그 중에서도 스프링에 관련된 세션을 담고, 최근에 관심이 있는 TDD, 그리고 내가 부족한 소프트웨어 설계에 대한 세션과 주니어 개발자로서 고민이 되는 부분을 해결해 줄 수 있는 세션을 선택하였다.<br><br>
 
 &nbsp; 최근 참여하고 있는 프로젝트에서 팀장 및 백엔드 포지션으로 참여하고 있는데, INFCON에서 보고 들은 다양한 기술 및 지식을 팀원들에게 공유해주고 싶다. 내가 지향하는 개발자는 `다른 사람들에게 좋은 영향력을 끼칠 수 있는 개발자`이다. 꼭 이벤트에 당첨되서 내 첫 개발자 컨퍼런스를 인프콘으로 장식하고 싶다!! 부디 INFCON을 통해 프로젝트를 하며 지쳐있는 제 자신에게 좋은 동기 부여를 제공할 수 있었으면 좋겠다 :)
