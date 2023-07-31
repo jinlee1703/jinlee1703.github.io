@@ -415,10 +415,19 @@ jobs:
 
 ## 3. CodeDeploy 설정 및 배포
 
-&nbsp; 자 이번에는 PR이 제출되고 난 후, `merge`가 되었을 때 실행할 워크플로우를 작성해보자. 우선 AWS CodeDeploy 인스턴스를 생성해 주어야 한다.
+&nbsp; 자 이번에는 PR이 제출되고 난 후, `merge`가 되었을 때 실행할 워크플로우를 작성해보자. 우선 AWS CodeDeploy 인스턴스를 생성해 주어야 한다.<br><br>
+&nbsp; 추후 작성 예정...
+
+<!-- 생성 이미지
+
+&nbsp; EC2 권한 부여
+
+![image](https://user-images.githubusercontent.com/68031450/257108043-b05712b8-9e8b-4a21-8188-8b63fdf99ece.png)
+
+![image](https://user-images.githubusercontent.com/68031450/257108218-359ee4e6-fcb0-4010-85d9-fcd14f780d53.png)
 
 - CodeDeploy 인스턴스 생성
-- merge workflow 만들기
+- merge workflow 만들기 -->
 
 ---
 
