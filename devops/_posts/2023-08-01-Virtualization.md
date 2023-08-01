@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Docker
+title: 가상화 (Virtualization)
 description: >
   소프트웨어 마에스트로 14기 팀 프로젝트에서 나는 백엔드 파트를 담당하여 Spring Boot를 통한 WAS 개발을 하게 되었다. Docker를 우리 프로젝트에 도입하게 된다면 우리 프로젝트에 어떠한 이점이 있는 지 학습 차 게시글을 작성하게 되었다.
 sitemap: false
