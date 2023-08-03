@@ -2,7 +2,7 @@
 layout: post
 title: Ubuntu에 Docker 설치하기
 description: >
-  소프트웨어 마에스트로 14기 팀 프로젝트에서 나는 백엔드 파트를 담당하여 Spring Boot를 통한 WAS 개발을 하게 되었다. Docker를 우리 프로젝트에 도입하기 위해 AWS EC에 Docker를 설치하는 명령어를 기억해두고자 게시글을 작성하게 되었다.
+  소프트웨어 마에스트로 14기 팀 프로젝트에서 나는 백엔드 파트를 담당하여 Spring Boot를 통한 WAS 개발을 하게 되었다. Docker를 우리 프로젝트에 도입하기 위해 AWS EC2에 Docker를 설치하는 명령어를 기억해두고자 게시글을 작성하게 되었다.
 sitemap: false
 hide_last_modified: true
 ---
