@@ -80,7 +80,7 @@ spring:
       on-profile: prod
 ```
 
-&nbsp; Intellij에서 profile 값을 주기 위해서는 사진과 같이 주입할 수 있다. CLI로 실행할 때 VM arguments로 `java -jar -Dspring.profiles.active=local app.jar`로 주입할 수도 있다.<br>
+&nbsp; Intellij에서 profile 값을 주기 위해서는 사진과 같이 주입할 수 있다. CLI로 실행할 때 VM arguments로 `java -jar -D spring.profiles.active=local app.jar`로 주입할 수도 있다.<br>
 &nbsp; 실제로 application을 실행할 때 spring.profiles.active 설정을 주어 어떠한 profile를 활성화할 것인지 정해주어야 한다. 해당 설정이 없을 시에는 위에서 정해준 default 값으로 profile이 실행된다.
 
 ---
