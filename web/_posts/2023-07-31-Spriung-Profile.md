@@ -89,3 +89,5 @@ spring:
 
 - [https://wonyong-jang.github.io/spring/2022/08/11/Spring-Profile.html](https://wonyong-jang.github.io/spring/2022/08/11/Spring-Profile.html)
 - [http://honeymon.io/tech/2021/01/16/spring-boot-config-data-migration.html](http://honeymon.io/tech/2021/01/16/spring-boot-config-data-migration.html)
+- [https://meotlog.tistory.com/65](https://meotlog.tistory.com/65)
+- [https://velog.io/@stbpiza/Spring-Boot-환경-분리하기](https://velog.io/@stbpiza/Spring-Boot-환경-분리하기)
