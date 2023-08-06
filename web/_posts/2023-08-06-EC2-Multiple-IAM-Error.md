@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Spring + Docker + GitHub Actions를 통한 CI/CD 파이프라인 구축
+title: AWS EC2 - Multiple IAM Role 에러 해결
 description: >
   소프트웨어 마에스트로 14기 팀 프로젝트에서 나는 백엔드 파트를 담당하여 Spring Boot를 통한 WAS 개발을 하게 되었다. AWS EC2에 IAM Role을 부여하려던 도중 오류가 발생하여 이를 해결하기 위한 방법을 기록해두기 위해 게시글을 작성하게 되었다.
 sitemap: false
@@ -71,7 +71,7 @@ aws ec2 describe-iam-instance-profile-associations
 
 #### 2. 모든 IAM Association 삭제
 
-```
+```shell
 aws ec2 disassociate-iam-instance-profile --association-id iip-assoc-xxxxxxxxxxxxx
 ```
 
