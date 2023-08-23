@@ -336,7 +336,6 @@ plugins:
   - jekyll-titles-from-headings
   - jekyll-include-cache
   - jekyll-last-modified-at
-  - hexo-generator-cname
   
 # SEO Tag
 # ---------------------------------------------------------------------------------------
@@ -427,5 +426,3 @@ mermaid:
   src: "path/to/mermaid.js"
 
 og_image: "/assets/img/logo.png"
-
-url: https://jinlee.kr
