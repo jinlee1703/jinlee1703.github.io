@@ -2,7 +2,7 @@
 layout: post
 title: Git-flow 전략
 description: >
-  Git-flow 전략을 100% 이해하고, 실제 운영 환경에서 
+  Git-flow 전략을 100% 이해하고, 실제 운영 환경 및 개발 환경에 적용하기 위해 게시글을 작성하게 되었다.
 sitemap: false
 hide_last_modified: true
 ---
