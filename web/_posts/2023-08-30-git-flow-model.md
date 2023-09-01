@@ -25,6 +25,8 @@ hide_last_modified: true
 
 ## Git-flow
 
+![image](https://user-images.githubusercontent.com/68031450/265033742-9c1b7871-c483-461b-aee8-5b7f56cbadaa.png)
+
 ### The main braches
 
 &nbsp; 기본적으로 중앙 저장소(이하 `origin`)에는 수명이 무한한 두 개의 주요 브랜치가 있다.
