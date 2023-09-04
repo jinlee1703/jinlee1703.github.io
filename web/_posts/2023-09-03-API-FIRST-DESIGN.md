@@ -27,10 +27,16 @@ hide_last_modified: true
 
 &nbsp; 김정규님께서 이전에 API 개발을 했을 때 프로세스는 아래와 같았다.
 
+![image](https://user-images.githubusercontent.com/68031450/265303885-7a1c0b5f-6f35-4780-9546-edba7ad54341.png)
+
 1. **API 설계 문서 작성**: Notion, Excel, Word와 같은 프로그램을 이용해 작성한다.
+  <img width="783" alt="image" src="https://user-images.githubusercontent.com/68031450/265303384-db9ca174-1058-44b3-8362-2a0bce09167c.png">
 2. **API 문서에 따라 코드 구현**: 1번의 단계에서 작성된 문서에 따라 코드를 구현한다.
+  <img width="633" alt="image" src="https://user-images.githubusercontent.com/68031450/265303483-0a5b8e9d-ddd5-4380-b5ad-0475ff813ef4.png">
 3. **문서화 도구 이용**: 2번의 단계에서 작성된 코드에 Swagger나 Spring Rest Docs 같은 도구를 이용해 API 문서를 구현한다.
+  <img width="964" alt="image" src="https://user-images.githubusercontent.com/68031450/265303539-eacf1c4d-00bb-4844-84a4-88a4ba5704b7.png">
 4. **API 문서 전달**: 3번의 단계에서 구현된 API 문서를 Frontend 개발자에게 전달한다.
+  <img width="1477" alt="image" src="https://user-images.githubusercontent.com/68031450/265303616-406166a4-eb02-46a3-9802-0ecd444c4d5a.png">
 
 &nbsp; 이 과정은 얼핏보면 문제가 없겠지만, 비즈니스 요구사항 변경으로 기존 API를 변경해야 할 때 문제가 발생한다.<br>
 &nbsp; 우선 첫 번째로는 위의 1번 단계에서 생성되는 API 문서에 일관성을 부여할 수 없다. 정해진 템플릿을 사용하는 것이 아니기 때문에 만드는 사람에 따라 API 설계 문서를 작성하는 기준이 다르고, 이는 일관성이 없는 API 설계 문서를 초래하여, 하나의 API 설계 문서를 일관성 있게 관리하기 위한 관리 비용이 증가하게 된다.<br>
@@ -49,6 +55,8 @@ hide_last_modified: true
 
 &nbsp; API First Design의 프로세스는 아래와 같다.
 
+![image](https://user-images.githubusercontent.com/68031450/265304259-a4b186c6-b03c-4229-ba05-7ef5fc948910.png)
+
 1. **Open API 명세서 설계**: OAS 문서 설계를 의미한다.
 2. **반복적 설계(토론 + 공유)**: Frontend 개발자와 Backend 개발자, 이해관계자가 토론 및 공유를 통해 명세서를 반복적으로 수정한다.
 3. **Open API 도구 활용&구현**: Open API 도구를 활용하여 코드를 구현한다. API 문서, Code Generators, Mock Server, API Gateway가 있다.
@@ -57,7 +65,7 @@ hide_last_modified: true
 &nbsp; 기존의 Code First 방식에서 API First 방식으로 변경한 것이다. API First Design 방식으로 변경함으로써 기존의 방식의 문제점을 해결할 수 있다.<br>
 &nbsp; 우선 위의 첫 번째 문제였던 **API 문서의 일관성** 측면에서 OAS 문서의 형식인 `.yaml`을 통해 API 문서에 정해진 양식 및 규칙을 부여함으로써 일관된 품질의 API 문서를 유지할 수 있다. 두 번째로 **두 개의 API 문서**로 관리하던 기존 방식에서 OAS 문서 하나를 통해 설계 및 개발하므로 하나의 API 문서만을 유지한다. 세 번째로 **코드의 변경사항이 최종 API 문서에 반영되지 않는 문제**는 API 명세서 자체 변경으로 문서 업데이트가 불필요하다고 말씀하셨는데 `개인적으로는 이 부분은 OAS 문서로도 100% 해결할 수 없는 부분이 아닌가 싶다`. 결국 코드를 수정하는 것만으로 OAS 파일이 업데이트되는 것은 아니기 때문이다. 결국 이 부분은 Backend 개발자가 보다 주의 깊게 명세서에 대해 신경써야 하는 부분이라고 생각한다.
 
-#### 2.3. API First Design 더욱 잘 황용하기
+#### 2.3. API First Design 더욱 잘 활용하기
 
 &nbsp; API First Design을 통해 OAS 문서를 작성하여 관리함으로써 얻을 수 있는 이점은 다음과 같다.
 
