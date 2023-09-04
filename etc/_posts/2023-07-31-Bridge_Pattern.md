@@ -102,39 +102,39 @@ package bridge_pattern;
 
 // Display 클래스 : '기능의 클래스 계층' 최상위에 있는 클래스
 public class Display {
-	// impl 필드 : Display 클래스의 '구현'을 나타내는 인스턴스, **두 클래스 계층의 다리 역할을 함**
-	private DisplayImpl impl;
+ // impl 필드 : Display 클래스의 '구현'을 나타내는 인스턴스, **두 클래스 계층의 다리 역할을 함**
+ private DisplayImpl impl;
 
-	// 생성자 : 구현을 나타내는 인스턴스를 인수로 받음
-	public Display(DisplayImpl impl) {
-		// 인수로 받은 인스턴스를 필드에 대입, 이후 처리에 사용됨
-		this.impl = impl;
-	}
+ // 생성자 : 구현을 나타내는 인스턴스를 인수로 받음
+ public Display(DisplayImpl impl) {
+  // 인수로 받은 인스턴스를 필드에 대입, 이후 처리에 사용됨
+  this.impl = impl;
+ }
 
-	// open, print, close 메소드 : Display 클래스에서 제공하는 인터페이스(API)
-	// 이 메소드들은 모두 DisplayImpl 클래스의 메소드를 호출함으로써, Display의 인터페이스가 DisplayImpl의 인터페이스로 변환
+ // open, print, close 메소드 : Display 클래스에서 제공하는 인터페이스(API)
+ // 이 메소드들은 모두 DisplayImpl 클래스의 메소드를 호출함으로써, Display의 인터페이스가 DisplayImpl의 인터페이스로 변환
 
-	// 표시의 전처리
-	public void open() {
-		impl.rawOpen();
-	}
+ // 표시의 전처리
+ public void open() {
+  impl.rawOpen();
+ }
 
-	// 표시 그 자체
-	public void print() {
-		impl.rawPrint();
-	}
+ // 표시 그 자체
+ public void print() {
+  impl.rawPrint();
+ }
 
-	// 표시의 후처리
-	public void close() {
-		impl.rawClose();
-	}
+ // 표시의 후처리
+ public void close() {
+  impl.rawClose();
+ }
 
-	// display 메서드 : '표시한다'라는 처리를 실현
-	public final void display() {
-		open();
-		print();
-		close();
-	}
+ // display 메서드 : '표시한다'라는 처리를 실현
+ public final void display() {
+  open();
+  print();
+  close();
+ }
 }
 ```
 
@@ -145,17 +145,17 @@ package bridge_pattern;
 
 // CountDisplay 클래스 : '기능의 클래스 계층'에 속하는 클래스, Display 클래스에 기능을 추가한 클래스
 public class CountDisplay extends Display {
-	public CountDisplay(DisplayImpl impl) {
-		super(impl);
-	}
+ public CountDisplay(DisplayImpl impl) {
+  super(impl);
+ }
 
-	// CountDisplay 클래스에서 추가된 기능, Display 클래스에서 상속받응ㄴ open, print, close 메서드를 사용하여 multiDisplay라는 새로운 메서드를 구현
-	public void multiDisplay(int times) {
-		open();
-		for (int i = 0; i < times; i++)
-			print();
-		close();
-	}
+ // CountDisplay 클래스에서 추가된 기능, Display 클래스에서 상속받응ㄴ open, print, close 메서드를 사용하여 multiDisplay라는 새로운 메서드를 구현
+ public void multiDisplay(int times) {
+  open();
+  for (int i = 0; i < times; i++)
+   print();
+  close();
+ }
 }
 ```
 
@@ -167,11 +167,11 @@ package bridge_pattern;
 // DisplayImpl 클래스 : '구현의 클래스 계층'의 최상위에 있는 클래스, 추상클래스, Display 클래스의 open, print, close 메서드에 대응하는 추상메서드를 선언
 public abstract class DisplayImpl {
 
-	public abstract void rawOpen();
+ public abstract void rawOpen();
 
-	public abstract void rawPrint();
+ public abstract void rawPrint();
 
-	public abstract void rawClose();
+ public abstract void rawClose();
 }
 ```
 
@@ -183,35 +183,35 @@ package bridge_pattern;
 // StringDisplayImpl 클래스 : '구현의 클래스 계층'에 속하는 클래스, DisplayImpl 클래스의 하위 클래스
 // rawOpen, rawPrint, rawClose 메서드를 구현함으로써 문자열을 표시
 public class StringDisplayImpl extends DisplayImpl {
-	private String string;
-	private int width;
+ private String string;
+ private int width;
 
-	public StringDisplayImpl(String string) {
-		this.string = string;
-		this.width = string.getBytes().length;
-	}
+ public StringDisplayImpl(String string) {
+  this.string = string;
+  this.width = string.getBytes().length;
+ }
 
-	@Override
-	public void rawOpen() {
-		printLine();
-	}
+ @Override
+ public void rawOpen() {
+  printLine();
+ }
 
-	@Override
-	public void rawPrint() {
-		System.out.println("|" + string + "|");
-	}
+ @Override
+ public void rawPrint() {
+  System.out.println("|" + string + "|");
+ }
 
-	@Override
-	public void rawClose() {
-		printLine();
-	}
+ @Override
+ public void rawClose() {
+  printLine();
+ }
 
-	private void printLine() {
-		System.out.print("+");
-		for (int i = 0; i < width; i++)
-			System.out.print("-");
-		System.out.println("+");
-	}
+ private void printLine() {
+  System.out.print("+");
+  for (int i = 0; i < width; i++)
+   System.out.print("-");
+  System.out.println("+");
+ }
 }
 ```
 
@@ -221,22 +221,22 @@ public class StringDisplayImpl extends DisplayImpl {
 package bridge_pattern;
 
 public class Main {
-	public static void main(String[] args) {
-		// Display 인스턴스 - StringDisplayImpl 인스턴스를 구현 객체로 가짐
-		Display d1 = new Display(new StringDisplayImpl("Hello, Korea."));
+ public static void main(String[] args) {
+  // Display 인스턴스 - StringDisplayImpl 인스턴스를 구현 객체로 가짐
+  Display d1 = new Display(new StringDisplayImpl("Hello, Korea."));
 
-		// CountDisplay 인스턴스 - StringDisplayImpl 인스턴스를 구현 객체로 가짐
-		Display d2 = new CountDisplay(new StringDisplayImpl("Hello, world."));
-		CountDisplay d3 = new CountDisplay(new StringDisplayImpl("Hello, universe."));
+  // CountDisplay 인스턴스 - StringDisplayImpl 인스턴스를 구현 객체로 가짐
+  Display d2 = new CountDisplay(new StringDisplayImpl("Hello, world."));
+  CountDisplay d3 = new CountDisplay(new StringDisplayImpl("Hello, universe."));
 
-		// Display 인스턴스의 display 메서드 호출 가능
-		d1.display();
-		d2.display();
-		d3.display();   // CountDisplay 인스턴스의 multiDisplay 메서드 호출 불가능
+  // Display 인스턴스의 display 메서드 호출 가능
+  d1.display();
+  d2.display();
+  d3.display();   // CountDisplay 인스턴스의 multiDisplay 메서드 호출 불가능
 
-		// CountDisplay 인스턴스의 multiDisplay 메서드 호출 가능
-		d3.multiDisplay(5);
-	}
+  // CountDisplay 인스턴스의 multiDisplay 메서드 호출 가능
+  d3.multiDisplay(5);
+ }
 }
 ```
 
@@ -320,23 +320,23 @@ class SomethingGood extends Something {
 
 ```java
 class Display {
-	private DisplayImpl impl;
+ private DisplayImpl impl;
 
-	public Display(DisplayImpl impl) {
-		this.impl = impl;
-	}
+ public Display(DisplayImpl impl) {
+  this.impl = impl;
+ }
 
-	public void open() {
-		impl.rawOpen();
-	}
+ public void open() {
+  impl.rawOpen();
+ }
 
-	public void print() {
-		impl.rawPrint();
-	}
+ public void print() {
+  impl.rawPrint();
+ }
 
-	public void close() {
-		impl.rawClose();
-	}
+ public void close() {
+  impl.rawClose();
+ }
 
   ...
 }
@@ -346,10 +346,10 @@ class Display {
 
 ```java
 public class Main {
-	public static void main(String[] args) {
-		Display d1 = new Display(new StringDisplayImpl("Hello, Korea."));
+ public static void main(String[] args) {
+  Display d1 = new Display(new StringDisplayImpl("Hello, Korea."));
     Display d2 = new CountDisplay(new StringDisplayImpl("Hello, world."));
-		CountDisplay d3 = new CountDisplay(new StringDisplayImpl("Hello, universe."));
+  CountDisplay d3 = new CountDisplay(new StringDisplayImpl("Hello, universe."));
   }
 }
 ```
