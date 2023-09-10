@@ -14,8 +14,11 @@ hide_last_modified: true
 &nbsp; SW마에스트로 14기 활동도 어느새 80일 밖에 남지 않았다. 나는 우리 프로젝트에서 푸시 알림 기능을 위해 Firebase의 FCM을 사용하여 해당 기능을 구현하게 되었다. 해당 기능을 구현하기 위해 **GitHub Actions**의 Secret에서 JSON 파일의 내용을 작성하고, `.json` 파일을 생성하는 과정을 통해 FCM의 키를 관리하게 되었다.
 
 - 파일 경로
+
     <img width="545" alt="image" src="https://user-images.githubusercontent.com/68031450/266814237-8e5040d6-c51a-4535-8b7e-1ef2c26dbb36.png">
+
 - 파일 내용
+
     <img width="1185" alt="image" src="https://user-images.githubusercontent.com/68031450/266814290-5b590094-b97b-4390-ba68-3eda988c7e42.png">
 
 ### 발생 오류
