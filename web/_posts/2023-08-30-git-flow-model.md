@@ -68,6 +68,10 @@ hide_last_modified: true
 &nbsp; `hotfix` 브랜치는 배포된 애플리케이션에서 발생한 긴급한 버그를 수정하기 위해 사용되는 브랜치이다. 이 브랜치를 사용하여 신속하게 버그를 수정하고, 수정한 내용을 배포 버전에 적용할 수 있도록 한다. hotfix 브랜치는 master 브랜치에서 분기되고, master 브랜치와 develop 브랜치에 병합하도록 한다.
 &nbsp; 이미 배포된 애플리케이션에 발생한 긴급한 버그나 보안 취약점을 수정하기 위한 목적으로 사용됨으로써, master 브랜치에서 바로 분기되기 때문에 빠르게 수정 작업을 시작하고 배포 버전에 반영할 수 있다.
 
+#### 도식화
+
+![image](https://user-images.githubusercontent.com/68031450/271764075-266f643a-abc5-48af-8fa5-175fbe71bc92.png)
+
 ---
 
 ### Reference
