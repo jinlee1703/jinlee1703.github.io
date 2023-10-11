@@ -187,7 +187,7 @@ public class Main {
 
 <img width="651" alt="image" src="https://user-images.githubusercontent.com/68031450/274160166-deb5d9e8-d760-4ccb-b00d-4ded9752bf9b.png">
 
-<details>
+<!-- <details>
 <summary>mermaid</summary>
 
 ```mermaid
@@ -229,13 +229,13 @@ Observer <--o NumberGenerator : ◀︎ Notifies
 NumberGenerator <|-- RandomNumberGenerator
 ```
 
-</details>
+</details> -->
 
 ### 클래스 다이어그램
 
 <img width="586" alt="image" src="https://user-images.githubusercontent.com/68031450/274161884-ea6bc567-a936-4872-81c0-ee5bb97e5e5e.png">
 
-<details>
+<!-- <details>
 <summary>mermaid</summary>
 
 ```mermaid
@@ -268,7 +268,7 @@ Observer <--o Subject : ◀︎ Notifies
 Observer <|-- ConcreteObserver
 ```
 
-</details>
+</details> -->
 
 - **Subject**
 
@@ -320,7 +320,7 @@ Observer <|-- ConcreteObserver
 ### 요약
 
 &nbsp; observer라는 말은 '관찰자'라는 의미이지만, 실제로 동작하는 것을 살펴보면 능동적으로 '관찰'하기 보다는 Subject에서 '알려 주는 것'을 수동적으로 기다리는 것에 더 가깝다. 그래서 Observer 패턴은 `Publish(발행)-Subscribe(구독)` 패턴이라고 불리기도 한다.<br>
-&nbsp; MVC(Model / View / Controller) 구조에서 `Model`과 `View`가 Observer 패턴의 `Subject`와 `Observer` 관계에 대응한다. Model은 '표시 형식에 의존하지 않는 내부 모델'을 조작하는 부분이고, View는 'Model을 어떻게 보여 줄지' 관리하는 부분으로, 일반적으로 하나의 Model에 여러 View가 대응한다.
+&nbsp; MVC(Model / View / Controller) 구조에서 `Model`과 `View`가 Observer 패턴의 `Subject`와 `Observer` 관계에 대응한다. Model은 '표시 형식에 의존하지 않는 내부 모델'을 조작하는 부분이고, View는 'Model을 어떻게 보여 줄지' 관리하는 부분으로, 일반적으로 하나의 Model에 다수의 View가 대응한다.
 
 ---
 
