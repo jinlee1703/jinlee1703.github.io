@@ -35,6 +35,10 @@ hide_last_modified: false
 |GraphObserver|간이 그래프로 수를 표시하는 그래프|
 |Main|동작 테스트용 클래스|
 
+#### 클래스 다이어그램
+
+<img width="651" alt="image" src="https://user-images.githubusercontent.com/68031450/274160166-deb5d9e8-d760-4ccb-b00d-4ded9752bf9b.png">
+
 #### 소스 코드
 
 - **Observer**
@@ -182,10 +186,6 @@ public class Main {
  }
 }
 ```
-
-#### 클래스 다이어그램
-
-<img width="651" alt="image" src="https://user-images.githubusercontent.com/68031450/274160166-deb5d9e8-d760-4ccb-b00d-4ded9752bf9b.png">
 
 <!-- <details>
 <summary>mermaid</summary>
