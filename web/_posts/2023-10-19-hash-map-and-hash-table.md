@@ -30,10 +30,11 @@ hide_last_modified: false
 
 &nbsp; 몇몇 고급 암호학적 해시 함수는 이러한 요구 사항을 충족하기 위해 복잡한 알고리즘과 솔트(salt)와 같은 추가적인 기법을 사용한다.
 
+---
+
 ## HashMap
 
 ![hashmap](/assets/img/docs/hashmap.png)
-![Hashtable](/assets/img/docs/hashtable.png)
 
 &nbsp; Java에서 가장 많이 사용되는 데이터 구조 중 하나로, `key-value` 형태로 데이터를 저장하고 검색하기 위한 **해시 테이블 기반의 자료 구조**이다.<br><br>
 
@@ -97,6 +98,8 @@ public class HashMapExample {
     }
 }
 ```
+
+---
 
 ## Hashtable
 
@@ -175,10 +178,14 @@ public class HashtableExample {
 
 &nbsp; Vector나 Hashtable과 같은 기존의 컬렉션 클래스들은 호환을 위해, 설계를 변경해서 남겨두었지만 가능하면 사용하지 않는 것이 좋다고 한다. 대신 ArrayList와 HashMap을 사용하는 것을 권장한다. 하지만 HashMap은 동기화를 지원하지 않기 때문에, Java 5부터는 ConcurrentHashMap과 같은 동시성을 더 효율적으로 지원하는 클래스가 도입되었으므로, 이를 사용하는 것을 권장한다.
 
+---
+
 ## Opinion
 
 &nbsp; 예전에 Git을 직접 구현했던 경험이 기억이 난다. .git 폴더 역시 내부에서 해시 함수를 사용하여 파일의 변경 여부를 관리하고 있었는데, 다시 보니 정리가 잘 되서 좋았다.<br>
 &nbsp; Hashtable이라는 자료 구조는 굉장히 생소한 자료 구조였는데, 이에 대해 이해할 수 있어서 좋은 학슴 경험이였다!
+
+---
 
 ## Reference
 
