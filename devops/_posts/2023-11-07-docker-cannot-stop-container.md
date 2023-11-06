@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Terraform 세미나 &#35;1
+title: Docker - cannot stop container
 description: >
   소프트웨어 마에스트로 14기 팀 프로젝트에서 나는 백엔드 파트를 담당하여 Spring Boot를 통한 WAS 개발을 하게 되었다. Ubuntu 서버에 Docker 및 docker-compose를 통해 Spring 컨테이너를 실행하고 있었는데 도중 오류가 발생하여 트러블 슈팅을 기록하고자 해당 게시글을 작성하게 되었다.
 sitemap: false
