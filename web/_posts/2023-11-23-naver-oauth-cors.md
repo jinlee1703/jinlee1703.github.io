@@ -21,7 +21,24 @@ hide_last_modified: false
 
 ## 해결 방법
 
-&nbsp; 백엔드에서 네이버 Token을 받아오는 API를 추가로 구현하였다.
+&nbsp; 백엔드에서 네이버 Token을 받아오는 API를 추가로 구현하고 프론트엔드에서는 이를 호출한 후, response를 통해 또다른 API를 호출하는 방식으로 구현하였다.
+
+### JavaScript
+
+```js
+export async function getAccessNaverToken(authCode) {
+  try {
+    const token_response = await axios.get(`http://xxx.xxx.xxx.xxx:8080/api/auth/sign-in/naver/token?code=${authCode}`);
+    const Navertoken = token_response.data['token'];
+
+    const response = await axios.post('http://xxx.xxx.xxx.xxx:8080/api/auth/sign-in/naver', { token: Navertoken });
+
+    localStorage.setItem('access_token', response.data['access_token']);
+  } catch (error) {
+    console.error('An error occurred:', error);
+  }
+};
+```
 
 ### API
 
