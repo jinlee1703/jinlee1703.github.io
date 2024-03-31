@@ -1,6 +1,6 @@
 ---
 layout: post
-title: bastion 인스턴스에 VPN 설치하여 보안 강화하기
+title: NGINX proxy 설정
 description: >
   졸업 작품팀에서 나는 백엔드 파트 및 인프라 구축을 담당하게 되었다. Terraform을 통해 VPC 환경을 구축하였고, nginx를 통해 proxy를 구축한 내용을 서술하려 한다.
 sitemap: false
