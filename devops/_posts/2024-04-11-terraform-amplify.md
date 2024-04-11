@@ -84,9 +84,20 @@ resource "aws_amplify_app" "app" {
 - `enable_pull_request_preview`: 필자의 경우에는 Pull-Request가 작성되었을 때 미리보기 용도로 사용하는 것이기 때문에 `true`로 설정함
 - `pull_request_environment_name`: 이 부분이 가장 헷갈리던 부분이다. 아래 이미지와 같이 기본적으로 해당 속성의 값은 리소스가 생성되었을 때 `pr`로 설정되는데, 이는 `terraform apply`를 했을 때, 리소스가 생성될 때의 속성값(null)과 달라져 아무 변경사항이 없는데도 `changed`가 발생했었다. (자세한 사항은 아래 **Pull-Request**에서 확인)
 
+## 적용 결과
+
+### Amplify GitHub App
+
+<img width="958" alt="image" src="https://gist.github.com/assets/68031450/5708d2a1-0b9f-4f1c-b087-d209b3d7ea79">
+
+### Amplify Hosting
+
+![image](https://gist.github.com/assets/68031450/fa6a8caf-c7bf-4309-9aa9-acbc2cc47bfb)
+
 ## 관련 Pull-Request
 
-&nbsp; [https://github.com/CollaBu/pennyway-iac/pull/5](https://github.com/CollaBu/pennyway-iac/pull/5)
+- `IaC Repository PR`: [https://github.com/CollaBu/pennyway-iac/pull/5](https://github.com/CollaBu/pennyway-iac/pull/5)
+- `Front-End Repository PR`: [https://github.com/CollaBu/pennyway-client-webview/pull/5](https://github.com/CollaBu/pennyway-client-webview/pull/5)
 
 ## 현재 AWS Architecture
 
