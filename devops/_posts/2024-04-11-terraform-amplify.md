@@ -84,8 +84,6 @@ resource "aws_amplify_app" "app" {
 - `enable_pull_request_preview`: 필자의 경우에는 Pull-Request가 작성되었을 때 미리보기 용도로 사용하는 것이기 때문에 `true`로 설정함
 - `pull_request_environment_name`: 이 부분이 가장 헷갈리던 부분이다. 아래 이미지와 같이 기본적으로 해당 속성의 값은 리소스가 생성되었을 때 `pr`로 설정되는데, 이는 `terraform apply`를 했을 때, 리소스가 생성될 때의 속성값(null)과 달라져 아무 변경사항이 없는데도 `changed`가 발생했었다. (자세한 사항은 아래 **Pull-Request**에서 확인)
 
-  ![Pull 요청](https://private-user-images.githubusercontent.com/68031450/321078817-c191c496-e771-43b9-8a03-f3570e32272a.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MTI4MTU2NzQsIm5iZiI6MTcxMjgxNTM3NCwicGF0aCI6Ii82ODAzMTQ1MC8zMjEwNzg4MTctYzE5MWM0OTYtZTc3MS00M2I5LThhMDMtZjM1NzBlMzIyNzJhLnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNDA0MTElMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjQwNDExVDA2MDI1NFomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPWJmOWZhYTc4NGJlMDQ2ZWVjMmIyMjMwY2UyMmFlYWRjYWFkNzM2MGY4OTYwY2U5NjQ5NDY5YWI4NmY1YmZmZjAmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JmFjdG9yX2lkPTAma2V5X2lkPTAmcmVwb19pZD0wIn0.Qii293Xwr090EXHZQe-gMv2bMk3GbAVm2wfn4YQgZqA)
-
 ## 관련 Pull-Request
 
 &nbsp; [https://github.com/CollaBu/pennyway-iac/pull/5](https://github.com/CollaBu/pennyway-iac/pull/5)
