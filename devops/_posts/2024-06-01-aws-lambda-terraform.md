@@ -186,4 +186,149 @@ npm install --os=linux --cpu=x64 sharp
 
 ### Terraform AWS Lambda 구축
 
-...(작성 중)
+#### S3 Object Key 설계 ([참고자료](https://hello-world.kr/43))
+
+```markdown
+## 프로필
+
+- 리사이징: `/profile/<userId>/<image_size>/<uuid>_<timestamp>.<ext>`
+- 원*본: `/profile/<userId>/origin/<uuid>*<timestamp>.<ext>`
+- 임*시: `/delete/profile/<userId>/<uuid>*<timestamp>.<ext>`
+
+## 피드
+
+- 리사이징: `/feed/<feed_id>/<image_size>/<uuid>_<timestamp>.<ext>`
+- 원*본: `/feed/<feed_id>/origin/<uuid>*<timestamp>.<ext>`
+- 임*시: `/delete/feed/<feed_id>/<uuid>*<timestamp>.<ext>`
+
+## 채팅방 대표 이미지
+
+- 리사이징: `/chatroom/<chatroom_id>/<image_size>/<uuid>_<timestamp>.<ext>`
+- 원*본: `/chatroom/<chatroom_id>/origin/<uuid>*<timestamp>.<ext>`
+- 임*시: `/delete/chatroom/<chatroom_id>/<uuid>*<timestamp>.<ext>`
+
+## 채팅
+
+- 리사이징: `/chatroom/<chatroom_id>/chat/<chat_id>/<image_size>/<uuid>_<timestamp>.<ext>`
+- 원*본: `/chatroom/<chatroom_id>/chat/<chat_id>/origin/<uuid>*<timestamp>.<ext>`
+- 임*시: `/delete/chatroom/<chatroom_id>/chat/<chat_id>/<uuid>*<timestamp>.<ext>`
+
+## 채팅방 사용자 프로필
+
+- 리사이징: `/chatroom/<chatroom_id>/chat_profile/<user_id>/<image_size>/<uuid>_<timestamp>.<ext>`
+- 원*본: `/chatroom/<chatroom_id>/chat_profile/<user_id>/origin/<uuid>*<timestamp>.<ext>`
+- 임*시: `/delete/chatroom/<chatroom_id>/chat_profile/<user_id>/<uuid>*<timestamp>.<ext>`
+```
+
+#### IAM 역할 생성
+
+```go
+resource "aws_iam_role" "lambda_role" {
+  name = "lambda_s3_exec_role"
+
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Action = "sts:AssumeRole"
+        Effect = "Allow"
+        Principal = {
+          Service = "lambda.amazonaws.com"
+        }
+      }
+    ]
+  })
+}
+```
+
+&nbsp; 위 코드는 Lambda 함수가 실행될 때 사용할 IAM 역할을 생성한다. 이 역할은 Lambda 서비스가 AssumeRole을 할 수 있도록 허용한다. AssumeRole은 AWS에서 하나의 IAM 역할이 다른 역할을 일시적으로 취득하여 그 역할의 권한을 사용할 수 있게 하는 기능이다.
+
+#### IAM 역할 정책 첨부 - Lambda Basic Execution Role
+
+```go
+resource "aws_iam_role_policy_attachment" "lambda_policy" {
+  role       = aws_iam_role.lambda_role.name
+  policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+}
+```
+
+&nbsp; 위 코드는 생성한 IAM 역할에 AWS Lambda Basic Execution Role 정책을 첨부한다. 이 정책은 Lambda 함수가 CloudWatch 로그에 접근할 수 있도록 한다.
+
+#### IAM 역할 정책 첨부 - S3 Full Access
+
+```go
+resource "aws_iam_role_policy_attachment" "s3_policy" {
+  role       = aws_iam_role.lambda_role.name
+  policy_arn = "arn:aws:iam::aws:policy/AmazonS3FullAccess"
+}
+```
+
+&nbsp; 위 코드는 생성한 IAM 역할에 AmazonS3FullAccess 정책을 첨부한다. 이 정책은 Lambda 함수가 S3 버킷에 완전 접근할 수 있도록 한다.
+
+#### Lambda 함수 생성
+
+```go
+resource "aws_lambda_function" "lambda" {
+  function_name    = "lambda_${var.function_name}"
+  role             = aws_iam_role.lambda_role.arn
+  handler          = "index.handler"
+  runtime          = "nodejs18.x"
+  filename         = var.function
+  source_code_hash = filebase64sha256(var.function)
+
+  layers = [
+    aws_lambda_layer_version.layer.arn
+  ]
+
+  environment {
+    variables = {
+      BUCKET = var.bucket.name
+    }
+  }
+}
+```
+
+&nbsp; 위 코드는 Lambda 함수를 생성한다. 함수의 이름, 역할, 핸들러, 런타임, 코드 파일 등을 설정하며, 환경 변수로 S3 버킷 이름을 설정한다. 또한 Lambda Layer를 추가한다.
+
+#### S3 버킷에 Lambda 함수 실행 권한 부여
+
+```go
+resource "aws_lambda_permission" "s3_invoke_lambda" {
+  statement_id  = "AllowS3Invoke"
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.lambda.function_name
+  principal     = "s3.amazonaws.com"
+  source_arn    = var.bucket.arn
+}
+```
+
+&nbsp; 위 코드는 S3 버킷이 Lambda 함수를 실행할 수 있도록 권한을 부여한다. 이를 통해 특정 S3 이벤트가 발생할 때 Lambda 함수가 실행될 수 있다.
+
+#### S3 버킷에 Lambda 함수 트리거 설정
+
+```go
+resource "aws_s3_bucket_notification" "bucket_notification" {
+  bucket = var.bucket.id
+
+  lambda_function {
+    lambda_function_arn = aws_lambda_function.lambda.arn
+    events              = ["s3:ObjectCreated:*"]
+    filter_prefix       = "delete/"
+  }
+}
+```
+
+&nbsp; 위 코드는 S3 버킷에 Lambda 함수 트리거를 설정한다. S3 버킷에서 `delete/`로 시작하는 객체가 생성될 때 Lambda 함수가 실행되도록 설정한다.
+
+#### Lambda Layer 생성
+
+```go
+resource "aws_lambda_layer_version" "layer" {
+  filename            = var.layer
+  layer_name          = "nodejs"
+  compatible_runtimes = ["nodejs18.x"]
+  source_code_hash    = filebase64sha256(var.layer)
+}
+```
+
+&nbsp; 위 코드는 Lambda Layer를 생성한다. Layer는 Node.js 런타임과 호환되며, Lambda 함수에서 사용할 수 있는 외부 라이브러리나 종속성을 포함할 수 있다.
