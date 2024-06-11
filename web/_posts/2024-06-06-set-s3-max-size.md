@@ -121,7 +121,7 @@ hide_last_modified: false
 #### 1. 정책 생성
 
 ```java
-
+(작성 중)...
 ```
 
 - x-amz-credential
@@ -131,7 +131,7 @@ hide_last_modified: false
 - key
 - x-amz-security-token
 
-#### 2.
+#### 2. (작성 중)...
 
 ---
 
