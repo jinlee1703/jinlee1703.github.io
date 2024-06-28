@@ -97,7 +97,7 @@ http {
             proxy_set_header X-Forwarded-Proto $scheme;
         }
 
-        location /<api_path> {
+        location /v1/phone {
             access_by_lua_file /etc/nginx/lua/rate_limit.lua;
 
             proxy_pass http://<your_backend_server>:<port>;  # 예: http://10.42.1.42:8080
@@ -108,6 +108,7 @@ http {
         }
     }
 }
+
 ```
 
 &nbsp; 위 설정 파일 예제에서 NGINX는 클라이언트의 요청을 받아 백엔드 서버로 전달하는 리버스 프록시 역할을 하고 있다. 이는 로드 밸런싱 및 보안을 강화하고 백엔드 서버의 부하를 줄일 수 있다. 아래는 개발 환경별 달라질 수 있는 값에 대한 설명이다.
