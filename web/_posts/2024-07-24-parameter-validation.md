@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 파라미터 유효성 검사의 양면성: 시스템 사용성에 미치는 영향
+title: 파라미터 유효성 검사의 양면성 - 시스템 사용성에 미치는 영향
 description: >
   .
 sitemap: false
