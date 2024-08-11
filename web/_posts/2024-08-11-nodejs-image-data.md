@@ -87,7 +87,7 @@ Content-Type: image/jpeg
 
 ### 문제 상황 설명
 
-![image](https://www.notion.so/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F7eea396e-31bc-4f6b-8f6b-6aaf5660ce0d%2F5e2c2e02-c2d1-48ea-96d6-0614807defca%2Fimage.png?table=block&id=5a3ec03f-fda0-4cee-8327-336ee651c4bf&spaceId=7eea396e-31bc-4f6b-8f6b-6aaf5660ce0d&width=2000&userId=e3b1dc31-cfb5-4493-b202-3e23e100ebba&cache=v2)
+![image](../../assets/img/docs/nodejs-image-data/image.png)
 
 &nbsp; 응답 본문을 자세히 보면, multipart/form-data의 헤더가 함께 들어가 있는 것을 확인할 수 있다. `multipart/form-data`는 일반적으로 파일 업로드에 사용되는 인코딩 타입이다. 필자는 이 상황이 실제로는 파일을 서버로 전송하는 과정에서 발생한 것이라고 추측하였다.<br>
 
