@@ -24,7 +24,7 @@ hide_last_modified: true
 
 ### 전환 전 아키텍처
 
-<image src="../../assets/img/docs/rds/image4.png" width="300">
+<image src="../../assets/img/docs/rds/image4.png" width="300" />
 
 &nbsp; 이러한 문제들을 해결하고 서비스의 안정적인 성장을 지원하기 위해, 우리는 AWS RDS(Relational Database Service)로의 전환을 결정했다. RDS는 관리형 데이터베이스 서비스로, 높은 가용성, 자동화된 백업 및 복구, 쉬운 스케일링 등을 제공하는 서비스이다.<br>
 
