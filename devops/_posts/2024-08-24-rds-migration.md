@@ -22,6 +22,10 @@ hide_last_modified: true
 
 &nbsp; Docker 컨테이너 기반의 데이터베이스는 수평적 확장에 제한(데이터 정합성 측면)이 있어, 향후 급격한 트래픽 증가에 대응하기 어려울 것으로 판단하였다<br><br>
 
+### 전환 전 아키텍처
+
+<image src="../../assets/img/docs/rds/image4.png" width="300">
+
 &nbsp; 이러한 문제들을 해결하고 서비스의 안정적인 성장을 지원하기 위해, 우리는 AWS RDS(Relational Database Service)로의 전환을 결정했다. RDS는 관리형 데이터베이스 서비스로, 높은 가용성, 자동화된 백업 및 복구, 쉬운 스케일링 등을 제공하는 서비스이다.<br>
 
 &nbsp; 이 글에서는 Docker 기반 MySQL에서 AWS RDS로의 전환 과정, 구축 방법, 그리고 이 전환이 우리 서비스에 미친 영향에 대해 상세히 다루고자 한다. 이를 통해 비슷한 상황에 처한 다른 개발팀들에게 유용한 인사이트를 제공하고 싶다.
@@ -223,6 +227,8 @@ networks:
 &nbsp; 따라서 RDS 스냅샷 사용 시 비용 최적화를 위해 필요한 백업 주기와 보관 기간을 신중히 고려해야 하며, 정기적으로 불필요한 스냅샷을 정리하는 것이 좋다. 또한, AWS Cost Explorer나 Billing 대시보드를 통해 스냅샷 관련 비용을 주기적으로 모니터링하는 것이 권장된다.
 
 ## 전환 후 개선점 및 효과
+
+![alt text](../../assets/img/docs/rds/image5.png)
 
 ### CPU Utilization
 
