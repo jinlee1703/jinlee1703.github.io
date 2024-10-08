@@ -19,43 +19,70 @@ hide_last_modified: true
 
 ## 설치 과정
 
-### 1. Oracle 데이터베이스 Docker 이미지 다운로드
+M2 칩을 사용하는 Mac에서는 Oracle Database 설치를 공식적으로 지원하지 않는다. 하지만 Colima와 Docker를 통해 설치할 수 있다.
 
-```sh
-docker pull pvargacl/oracle-xe-18.4.0
+### 1. Homebrew 설치
+
+이미 Homebrew가 설치되어 있다면 이 단계를 건너뛰어도 된다.
+
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
-### 2. Oracle 데이터베이스 컨테이너 생성 및 실행
+### 2. Docker 설치
 
-```sh
-docker run --name oracle-xe -e ORACLE_PASSWORD=YourSecurePassword -p 1521:1521 -d pvargacl/oracle-xe-18.4.0
+Homebrew를 사용하여 Docker를 설치한다.
+
+```bash
+brew install --cask docker
 ```
 
-- `--name oracle-xe`: 컨테이너 이름을 'oracle-xe'로 지정
-- `-e ORACLE_PASSWORD=YourSecurePassword`: 데이터베이스 관리자 비밀번호 설정
-- `-p 1521:1521`: 호스트의 1521 포트를 컨테이너의 1521 포트에 매핑
-- `-d`: 백그라운드에서 컨테이너를 실행
+설치 후 Docker 애플리케이션을 실행하여 초기 설정을 완료한다.
 
-### 3. 컨테이너 상태 확인
+### 3. Colima 설치
 
-```sh
+```bash
+brew install colima
+```
+
+### 4. Colima 실행 및 Docker로 Oracle DB 설치
+
+### 4-1. Colima 시작
+
+```bash
+colima start --memory 4 --arch x86_64
+```
+
+#### 4-2. Docker로 Oracle 이미지 받기
+
+```bash
+docker pull deepdiver/docker-oracle-xe-11g
+```
+
+#### 4-3. Oracle DB 컨테이너 실행
+
+```bash
+docker run -d --name oracle11g -p 1521:1521 -p 8080:8080 deepdiver/docker-oracle-xe-11g
+```
+
+#### 4-4. Docker 상태 확인
+
+```bash
 docker ps
 ```
 
-![alt text](../../assets/img/docs/oracle-database-install/image1.png)
+실행 결과에 `deepdiver/docker-oracle-xe-11g` 이미지가 보이면 성공이다.
 
-&nbsp; 컨테이너가 실행 중인지 확인한다.
+#### 4-5. Docker 컨테이너 내에서 SQLPlus 실행
 
-### 4. 데이터베이스 초기화 과정 모니터링
-
-```sh
-docker logs -f oracle-xe
+```bash
+docker exec -it oracle11g sqlplus
 ```
 
-![alt text](../../assets/img/docs/oracle-database-install/image2.png)
+## 주의사항
 
-&nbsp; "DATABASE IS READY TO USE!" 메시지가 나타날 때까지 대기한다. 필자의 경험 상 해당 과정은 5분 정도 시간이 필요하였다.
+- 이 방법은 M2 칩 Mac에서 Oracle DB를 사용하기 위한 대안적인 방법이다.
+- Colima를 사용하여 x86_64 아키텍처 에뮬레이션을 통해 Oracle DB를 실행한다.
+- 성능이나 호환성 면에서 제한이 있을 수 있다.
 
-### 5. SQL Developer 설정
-
-![alt text](../../assets/img/docs/oracle-database-install/image3.png)
+&nbsp; 이 방법을 통해 M2 칩 Mac에서도 Oracle DB를 사용할 수 있다. 개발 및 학습 목적으로는 충분히 활용 가능할 것이다.
