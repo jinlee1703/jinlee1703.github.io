@@ -56,13 +56,13 @@ colima start --memory 4 --arch x86_64
 #### 4-2. Docker로 Oracle 이미지 받기
 
 ```bash
-docker pull deepdiver/docker-oracle-xe-11g
+docker pull pvargacl/oracle-xe-18.4.0
 ```
 
 #### 4-3. Oracle DB 컨테이너 실행
 
 ```bash
-docker run -d --name oracle11g -p 1521:1521 -p 8080:8080 deepdiver/docker-oracle-xe-11g
+docker run --name oracle-xe -e ORACLE_PASSWORD=YourSecurePassword -p 1521:1521 -d pvargacl/oracle-xe-18.4.0
 ```
 
 #### 4-4. Docker 상태 확인
@@ -71,13 +71,21 @@ docker run -d --name oracle11g -p 1521:1521 -p 8080:8080 deepdiver/docker-oracle
 docker ps
 ```
 
+![docker-ps](../../assets/img/docs/oracle-database-install/image1.png)
+
 실행 결과에 `deepdiver/docker-oracle-xe-11g` 이미지가 보이면 성공이다.
 
-#### 4-5. Docker 컨테이너 내에서 SQLPlus 실행
+#### 4-5. 데이터베이스 초기화 과정 모니터링
+
+다음 명령어로 데이터베이스 초기화 과정을 모니터링할 수 있다.
 
 ```bash
-docker exec -it oracle11g sqlplus
+docker logs -f oracle-xe
 ```
+
+![docker-logs](../../assets/img/docs/oracle-database-install/image2.png)
+
+&nbsp; "DATABASE IS READY TO USE!" 메시지가 나타날 때까지 기다린다. 이 과정은 약 5분 정도 소요될 수 있다.
 
 ## 주의사항
 
