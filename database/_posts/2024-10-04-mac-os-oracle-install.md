@@ -39,10 +39,16 @@ brew install --cask docker
 
 설치 후 Docker 애플리케이션을 실행하여 초기 설정을 완료한다.
 
-### 3. Colima 설치
+### 3. Colima 설치 및 실행
 
 ```bash
 brew install colima
+```
+
+Colima를 설치한 후, 다음 명령어로 Colima 서비스를 시작한다.
+
+```bash
+brew services start colima
 ```
 
 ### 4. Colima 실행 및 Docker로 Oracle DB 설치
