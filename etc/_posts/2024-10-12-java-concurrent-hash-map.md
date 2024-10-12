@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 앱 광고 (우리 서비스에 적합한 광고 매체는 무엇일까)
+title: ConcurrentHashMap을 통한 멀티스레드 환경 및 동시성 제어 알아보기
 description: >
   최근 프로젝트에서 인증 코드 저장을 위해 Redis와 자바의 자료구조인 ConcurrentHashMap 중 ConcurrentHashMap을 사용하기로 결정하였고, 이에 대한 깊은 이해를 위해 게시글을 작성하게 되었다.
 sitemap: false
