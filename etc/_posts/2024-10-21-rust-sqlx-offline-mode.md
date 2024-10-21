@@ -1,6 +1,6 @@
 ---
 layout: post
-title: M2 Pro MacBook에서 Rust 개발 환경 설정하기
+title: Rust SQLx의 오프라인 모드를 활용한 데이터베이스 없이 빌드하기
 description: >
   k8s 실습을 위해 Rust로 api server를 구축하였고, 이를 Docker로 빌드 하는 과정에서 오류가 발생하였다. 필자와 같은 Rust 초보가 겪을 수 있는 상황에 대해 정리해둠으로써 도움을 주고자 게시글을 작성하게 되었다.
 sitemap: false
