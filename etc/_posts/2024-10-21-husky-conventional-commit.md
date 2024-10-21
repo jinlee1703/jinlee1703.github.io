@@ -76,7 +76,3 @@ npx husky add .husky/commit-msg 'npx --no-install commitlint --edit $1'
 &nbsp;이제 Conventional Commits 규칙을 따르지 않는 커밋은 자동으로 거부될 것이다. 이를 통해 프로젝트의 커밋 히스토리를 일관되게 유지할 수 있으며, 변경사항을 더 쉽게 추적하고 이해할 수 있게 된다.
 
 &nbsp;Conventional Commits와 Husky를 활용하여 프로젝트 관리를 한 단계 업그레이드 해보자!
-
----
-
-이렇게 각 문단 앞에 '&nbsp;'를 추가하였습니다. 이 방법은 HTML에서 각 문단의 첫 줄에 들여쓰기 효과를 주는데 사용됩니다. 웹 페이지에서 이 글을 표시할 때 각 문단의 시작 부분에 약간의 공백이 생기게 될 것입니다. 필요에 따라 추가적인 수정이나 형식 변경을 할 수 있습니다.
