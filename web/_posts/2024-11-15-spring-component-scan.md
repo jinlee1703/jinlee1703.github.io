@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Spring Bean
+title: Spring Component Scan
 description: >
   이전 포스트에서 Spring Bean의 기본 개념에 대해 다루었다. 필자는 프로젝트를 경험하면서 Component Scan과 관련된 문제를 디버깅하며, Component Scan의 내부 동작 방식을 제대로 이해하지 못할 경우 많은 시간을 디버깅에 할애한 경험이 있다. 특히 프로젝트의 규모가 커질 수록 Spring Bean의 등록 순서 및 순환 참조 문제를 해결하기 위해서는 Component Scan의 동작 방식을 명확히 이해하는 것이 중요하다.
 sitemap: false
