@@ -19,6 +19,8 @@ hide_last_modified: false
 
 ### 1.2. DDD에서 Usecase가 필요한 이유
 
+![DDD Architecture](../../assets/img/docs/ddd-usecase/image.png)
+
 &nbsp; 전통적인 계층형 아키텍처에서는 Service 계층이 비즈니스 로직을 담당한다. 하지만 이는 몇 가지 고질적인 문제점을 가지고 있다.<br>
 
 &nbsp; 첫째, Service 계층이 너무 비대해진다. 하나의 Service 클래스가 여러 비즈니스 로직을 담당하다 보니, 시간이 지날수록 코드의 복잡도가 증가하고 유지보수가 어려워진다.
