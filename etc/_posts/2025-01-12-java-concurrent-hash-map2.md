@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Java ConcurrentHashMap - 동시성제어의 이해
+title: Java ConcurrentHashMap - 동시성 제어의 이해
 description: >
   최근 면접을 준비하며 자료구조와 스레드, 동시성 등을 공부하면서 멀티스레드 환경에서의 데이터 처리에 대해 이해하고자 관심을 갖게 되었다. 특히 여러 스레드가 동시에 접근하는 Java에서는 데이터 구조를 다룰 때 더욱 각별한 주의가 필요하다. 이러한 문제를 해결하기 위해 등장한 Java의 ConcurrentHashMap의 내부 동작에 대해 자세히 알아보려 한다.
 sitemap: false
@@ -454,8 +454,6 @@ public class TimeoutExample {
 ---
 
 ## 6. 참고자료
-
-### 공식 문서
 
 - [Java SE 11 ConcurrentHashMap Documentation](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/concurrent/ConcurrentHashMap.html)
 - [Java SE 11 ReentrantLock Documentation](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/concurrent/locks/ReentrantLock.html)
