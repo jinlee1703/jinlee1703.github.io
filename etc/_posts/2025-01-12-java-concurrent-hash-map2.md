@@ -113,6 +113,8 @@ public class ConcurrentHashMap<K, V> {
 
 ### 3.2 세그먼트 락킹의 장점
 
+![세그먼트 구조](../../assets/img/docs/java-concurrent-hash-map2/image.png)
+
 &nbsp; 세그먼트 락킹은 하나의 큰 금고를 여러 개의 작은 금고로 나누는 것과 같다. 각각의 작은 금고는 독립적으로 접근이 가능하며, 이는 전체 시스템의 처리량을 향상시킬 수 있다.<br>
 
 &nbsp; 세그먼트 락킹의 주요 장점은 다음과 같다.
@@ -337,6 +339,8 @@ public class ConcurrentHashMapSegments<K,V> {
 4. 세그먼트 단위의 독립적인 임계값 관리
 
 ### 4.4 조건 변수(Condition)를 활용한 대기/통지
+
+![세그먼트 구조](../../assets/img/docs/java-concurrent-hash-map2/image2.png)
 
 &nbsp; ReentrantLock은 Condition을 통해 보다 더 세밀한 스레드 제어가 가능하다. 필자는 이를 활용한 'Producer & Consumer 패턴' 구현에 대한 예제 코드를 작성해보았다.
 
