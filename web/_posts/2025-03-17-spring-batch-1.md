@@ -14,11 +14,34 @@ hide_last_modified: false
 
 ## 1. Spring Batch와 Scheduler: 명확히 다른 개념
 
+&nbsp; 필자를 포함한 많은 개발자들이 혼동하는 부분을 명확히 짚고 넘어가고자 한다. **Batch**와 **Schduler**는 서로 다른 개념이다.
+
 ### 1.1. Spring Batch: '무엇을' 처리할 것인가
+
+&nbsp; Spring Batch는 **대용량 데이터 처리**를 위한 경량 프레임워크이다. 배치 작업의 실행 흐름, 데이터 처리 방식, 오류 처리 전략 등 '무엇을 어떻게 처리할 것인가'에 중점을 둔다. 주요 특징은 아래와 같다.
+
+- 대용량 데이터의 효율적인 처리를 위한 청크(Chunk) 기반 처리
+- 재시작 가능한 작업 (Restartbility)
+- 단계별 처리 (Step-by-Step Processing)
+- 트랜잭션 관리
+- 작업 상태 및 통계 관리
+
+&nbsp; 예를 들면, 수천만 건의 거래 내역을 '집계'하는 로직을 Spring Batch로 구현할 수 있다.
 
 ### 1.2. Scheduler: '언제' 실행할 것인가
 
+&nbsp; 반면, Scheduler는 **작업의 실행 시점을 관리하는 도구**이다. 즉 '언제 실행할 것인가'에 중점을 둔다. 대표적인 스케줄러로는 Spring의 내장 Scheduler와 Quartz, cron 등이 있다. 주요 특징은 다음과 같다.
+
+- 주기적 실행 (매일, 매주, 매월 등)
+- 특정 시간 실행 (매일 오전 3시 등)
+- 조건부 실행 (특정 이벤트 발생 시)
+- 작업 실행 관리 (중지, 재개, 취소 등)
+
+&nbsp; 예를 들면, 매일 자정에 특정 작업을 실행하게 하는 것이 Scheduler의 역할이다.ㄴ
+
 ## 2. Spring Batch 기본 구조
+
+&nbsp; Spring Batch는 크기 `Job`, `Step`, `ItemReader`, `ItemProcessor`, `ItemWriter`로 구성된다.
 
 ### 2.1. Job
 

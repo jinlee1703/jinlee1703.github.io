@@ -1,11 +1,10 @@
 {
   "editor.formatOnSave": false,
   "[markdown]": {
-    // "editor.formatOnSave": false,
     "editor.defaultFormatter": null
   },
-  "prettier.disableLanguages": ["markdown"],
   "markdownlint.config": {
+    "MD004": false,
     "MD033": false,
     "MD041": false
   }

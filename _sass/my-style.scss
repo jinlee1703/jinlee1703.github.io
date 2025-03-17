@@ -11,4 +11,29 @@
   .btn, .gumroad-button  {
     margin: 1rem 0;
   }
+
+  /*  일반 텍스트 단락에 들여쓰기 적용 */
+  .post-content p {
+    text-indent: 2em; /* 들여쓰기 크기 조정 가능 */
+  }
+
+  /* 특정 요소와 특정 요소 다음에 오는 단락에는 들여쓰기 제외 */
+  .post-content ul,
+  .post-content ol,
+  .post-content pre,
+  .post-content blockquote,
+  .post-content table,
+  .post-content ul + p,
+  .post-content ol + p,
+  .post-content pre + p,
+  .post-content blockquote + p,
+  .post-content table + p,
+  .post-content h1 + p,
+  .post-content h2 + p,
+  .post-content h3 + p,
+  .post-content h4 + p,
+  .post-content h5 + p,
+  .post-content h6 + p {
+    text-indent: 0;
+  }
 }
