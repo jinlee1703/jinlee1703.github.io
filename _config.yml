@@ -391,6 +391,7 @@ compress_html:
     envs: [development]
 
 sass:
+  sass_dir: _sass
   style: compressed
 
 # Jekyll Compose Defaults
