@@ -17,10 +17,9 @@
 layout: base
 ---
 
-{% assign version = jekyll.version | split:'.' %}
-{% assign major = version[0] | plus:0 %}
-{% assign minor = version[1] | plus:0 %}
-{% assign patch = version[2] | plus:0 %}
+{% assign version = jekyll.version | split:'.' %} {% assign major = version[0] |
+plus:0 %} {% assign minor = version[1] | plus:0 %} {% assign patch = version[2]
+| plus:0 %}
 
 <script>
   mermaid.initialize({ startOnLoad: true });
@@ -30,34 +29,34 @@ layout: base
   );
 </script>
 
-{% include_cached components/post.html post=page no_link_title=true no_excerpt=true hide_image=page.hide_image
+{% include_cached components/post.html post=page no_link_title=true
+no_excerpt=true hide_image=page.hide_image
 hide_description=page.hide_description %}
 
-<div style="text-align:right; text-align: center">
-  <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https://{{ site.url | remove_first: 'https://' | remove_first: 'http://' }}{{ page.url }}&count_bg=%23DDA94B&title_bg=%231E4174&icon=&icon_color=%23FFFFFF&title=TODAY+%2F+TOTAL&edge_flat=false" />
+<!-- 목차 추가 -->
+{% include toc.html %}
+
+<div style="text-align: right; text-align: center">
+  <img
+    src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https://{{ site.url | remove_first: 'https://' | remove_first: 'http://' }}{{ page.url }}&count_bg=%23DDA94B&title_bg=%231E4174&icon=&icon_color=%23FFFFFF&title=TODAY+%2F+TOTAL&edge_flat=false"
+  />
 </div>
 
-{% include components/dingbat.html %}
-
-{% assign addons = page.addons | default:site.hydejack.post_addons %}
-{% unless addons %}
-{% assign addons = "about,newsletter,related,random" | split:"," %}
-{% endunless %}
-
-{% for addon in addons %}
-{% case addon %}
-{% when 'about' %}
-{% include_cached components/about.html author=page.author %}
-{% when 'related' %}
-{% include if-non-null try="components/related-posts.html" %}
-{% when 'comments' %}
-{% include body/comments.html %}
-{% else %}
-{% endcase %}
-{% endfor %}
+{% include components/dingbat.html %} {% assign addons = page.addons |
+default:site.hydejack.post_addons %} {% unless addons %} {% assign addons =
+"about,newsletter,related,random" | split:"," %} {% endunless %} {% for addon in
+addons %} {% case addon %} {% when 'about' %} {% include_cached
+components/about.html author=page.author %} {% when 'related' %} {% include
+if-non-null try="components/related-posts.html" %} {% when 'comments' %} {%
+include body/comments.html %} {% else %} {% endcase %} {% endfor %}
 
 <div class="col-lg-8 col-md-10 mx-auto">
-  <script src="https://utteranc.es/client.js" repo="jinlee1703/jinlee1703.github.io" issue-term="url" theme="github-light"
-    crossorigin="anonymous" async>
-    </script>
+  <script
+    src="https://utteranc.es/client.js"
+    repo="jinlee1703/jinlee1703.github.io"
+    issue-term="url"
+    theme="github-light"
+    crossorigin="anonymous"
+    async
+  ></script>
 </div>
