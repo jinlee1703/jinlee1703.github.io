@@ -200,11 +200,11 @@ public class BatchJobQuartzJob extends QuartzJobBean {
 }
 ```
 
-## 3.3. Job Parameters 이해하기
+### 3.3. Job Parameters 이해하기
 
 Spring Batch에서 **Job Parameters**는 배치 작업을 실행할 때 전달하는 파라미터 집합이다. 이는 배치 작업의 식별과 실행 제어에 중요한 역할을 한다.
 
-### 3.3.1. Job Parameters의 중요성
+#### 3.3.1. Job Parameters의 중요성
 
 Spring Batch는 기본적으로 동일한 Job과 Job Parameters 조합으로 중복 실행을 방지한다. 따라서 스케줄러를 통해 반복 실행할 때는 매번 다른 Job Parameters를 제공해야 한다.
 
