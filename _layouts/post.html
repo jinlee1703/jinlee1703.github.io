@@ -27,26 +27,7 @@ plus:0 %} {% assign minor = version[1] | plus:0 %} {% assign patch = version[2]
     undefined,
     document.querySelectorAll(".language-mermaid")
   );
-
-  document.addEventListener('DOMContentLoaded', function() {
-    const postContent = document.querySelector('.post-body');
-    if (postContent) {
-      const paragraphs = postContent.querySelectorAll('p');
-      paragraphs.forEach(function(p) {
-        // 목록, 인용문 등의 내부에 있지 않은 경우에만 클래스 추가
-        if (!p.closest('ul, ol, blockquote, pre, table')) {
-          p.classList.add('indented-paragraph');
-        }
-      });
-    }
-  });
 </script>
-
-<style>
-  .indented-paragraph {
-    text-indent: 2em;
-  }
-</style>
 
 {% include_cached components/post.html post=page no_link_title=true
 no_excerpt=true hide_image=page.hide_image
