@@ -10,7 +10,9 @@ toc: true
 
 ---
 
-{% include toc.html html=content %}
+<!-- {% include toc.html html=content %} -->
+
+{:toc}
 
 ## 1. Spring Batch와 Scheduler: 명확히 다른 개념
 
