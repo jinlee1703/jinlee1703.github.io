@@ -461,6 +461,6 @@ Spring Batch의 Chunk 처리 방식에 멀티스레딩을 결합하면 대용량
 
 ### *Spring Batch 시리즈*
 
-- Spring Batch 입문: 배치 작업과 스케줄러 연동하기
-- Spring Batch 처리 방식 비교: Tasklet vs Chunk 상세 분석
+- [Spring Batch 입문: 배치 작업과 스케줄러 연동하기](https://jinlee.kr/web/2025-03-17-spring-batch-1/)
+- [Spring Batch 처리 방식 비교: Tasklet vs Chunk 상세 분석](https://jinlee.kr/web/2025-03-17-spring-batch-2/)
 - 고성능 Spring Batch 구현: 멀티스레드 적용 실전 사례 (현재 글)
