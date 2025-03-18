@@ -230,7 +230,7 @@ Spring Batch와 Scheduler는 서로 다른 개념이지만, 함께 사용할 때
 
 ---
 
-### *Spring Batch 시리즈*
+## *Spring Batch 시리즈*
 
 - Spring Batch 입문: 배치 작업과 스케줄러 연동하기 (현재 글)
 - [Spring Batch 처리 방식 비교: Tasklet vs Chunk 상세 분석](https://jinlee.kr/web/2025-03-17-spring-batch-2/)
