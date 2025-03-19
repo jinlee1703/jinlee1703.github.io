@@ -5,6 +5,7 @@ description: >
   이전 글 "Spring Batch - 배치 작업과 스케줄러 연동하기"에서 언급했듯이, Spring Batch는 대용량 데이터 처리를 위한 강력한 프레임워크이다. 이번 글에서는 Spring Batch의 두 가지 주요 처리 방식인 Tasklet과 Chunk 방식을 비교 분석하고자 한다.
 sitemap: false
 hide_last_modified: false
+published: false
 ---
 
 ---
