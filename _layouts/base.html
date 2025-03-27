@@ -29,7 +29,16 @@ default:site.theme_color | default:'rgb(8,46,57)' %}
 <meta property="og:image" content="{{ site.og_image }}">
 <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
 <head>
-  {% include head/index.html %}
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-GVW5DRM3KG"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-GVW5DRM3KG');
+  </script>
+
+{% include head/index.html %}
 </head>
 
 <body class="{% include_cached base-classes %}">
