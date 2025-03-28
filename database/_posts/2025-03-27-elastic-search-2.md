@@ -555,9 +555,9 @@ sudo chown -R $(whoami) [ElasticSearch 디렉토리]
 
 ElasticSearch 8.x는 이전 버전과 달리 기본적으로 보안이 활성화되어 있어 초기 설정 시 생성된 비밀번호와 인증서를 잘 관리해야 한다. 개발 환경에서는 Docker를 이용한 설치가 가장 편리한데, 필요에 따라 보안 설정을 간소화할 수 있기 때문이다.
 
-### 10.2. 다음 포스트 예고: ElasticSearch 기본 CRUD 및 검색 쿼리
+### 10.2. 다음 포스트 예고: ElasticSearch 기반으로 Spring 문서 검색 프로그램 만들기
 
-다음 포스트에서는 ElasticSearch 8.x의 기본적인 CRUD(Create, Read, Update, Delete) 작업과 다양한 검색 쿼리에 대해 알아볼 계획이다. 실제 데이터를 가지고 ElasticSearch의 강력한 검색 기능을 경험해볼 수 있는 내용으로 구성할 계획이다.
+다음 포스트에서는 ElasticSearch를 Spring Boot 애플리케이션과 연동하여 실용적인 문서 검색 프로그램을 만드는 방법을 알아볼 예정이다. Spring Data Elasticsearch를 활용하여 모델 매핑, 저장소 구현, 검색 기능을 구축하는 과정을 단계별로 다룰 것이다. 또한, 한글 형태소 분석기 설정과 다양한 검색 기능(자동완성, 하이라이팅, 필터링 등)을 구현하여 실제 프로젝트에 바로 적용할 수 있는 실전 코드와 지식을 공유하고자 한다.
 
 ---
 
