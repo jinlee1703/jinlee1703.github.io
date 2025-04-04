@@ -38,6 +38,14 @@ default:site.theme_color | default:'rgb(8,46,57)' %}
     gtag('config', 'G-GVW5DRM3KG');
   </script>
 
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({ startOnLoad: true });
+    window.mermaid.init(
+      undefined,
+      document.querySelectorAll(".language-mermaid")
+    );
+  </script>
 {% include head/index.html %}
 </head>
 
