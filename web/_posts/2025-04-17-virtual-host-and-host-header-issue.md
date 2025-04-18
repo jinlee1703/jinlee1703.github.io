@@ -58,9 +58,33 @@ http://example.com:9090 → 포트 9090용 서비스
 
 ### 1.4. Virtual Host 방식의 차이 (도식화)
 
-![Virtual Host 분류도](./assets/virtual-host-types.png)  
-*출처: 직접 제작한 구조도 (IP, Port, Host 기반 분기 방식 비교)*
-
+<div style="font-family: sans-serif; padding: 1rem; border: 1px solid #ccc; border-radius: 8px; max-width: 900px;">
+  <h3 style="text-align: center; margin-top: 0;">Virtual Host 라우팅 구조</h3>
+  <div style="display: flex; justify-content: space-around; align-items: center; margin-top: 2rem;">
+    <!-- 클라이언트 -->
+    <div>
+      <p style="margin-bottom: 0.5rem;">🖥️ <strong>pc-service.com</strong></p>
+      <p style="margin-bottom: 0.5rem;">🖥️ <strong>mobile-service.com</strong></p>
+      <p style="margin-bottom: 0.5rem;">🖥️ <strong>other-service.com</strong></p>
+    </div>
+    <!-- 화살표 -->
+    <div style="font-size: 2rem;">➡️</div>
+    <!-- Tomcat -->
+    <div style="text-align: center;">
+      <img src="https://tomcat.apache.org/res/images/tomcat.png" alt="Tomcat Logo" width="80" />
+      <p><strong>Apache Tomcat</strong></p>
+      <p style="font-size: 0.9rem; color: gray;">(server.json 설정)</p>
+    </div>
+    <!-- 화살표 -->
+    <div style="font-size: 2rem;">➡️</div>
+    <!-- 디렉토리 -->
+    <div>
+      <p style="margin-bottom: 0.5rem;">📁 apache-tomcat-9/pc/ROOT</p>
+      <p style="margin-bottom: 0.5rem;">📁 apache-tomcat-9/mobile/ROOT</p>
+      <p style="margin-bottom: 0.5rem;">📁 apache-tomcat-9/other/ROOT</p>
+    </div>
+  </div>
+</div>
 ## 2. Virtual Host 기능 직접 구현해보기
 
 ### 2.1. 설정 예시 (`server.json`)
