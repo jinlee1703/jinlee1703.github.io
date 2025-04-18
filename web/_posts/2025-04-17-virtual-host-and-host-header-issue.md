@@ -7,7 +7,7 @@ description: >
   해당 기능을 구현하던 중 Java의 `HttpURLConnection`이 `Host` 헤더를 덮어써서 발생한 테스트 이슈를 경험하였다. 이를 해결하는 과정에서 교훈을 얻어 Virtual Host 개념 및 구현 내용을 정리하고, 그 과정에서 마주한 문제와 해결 방법을 함께 공유하고자 작성하였다.
 sitemap: false
 hide_last_modified: false
-published: false
+published: true
 ---
 
 ---
