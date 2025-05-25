@@ -5,7 +5,7 @@ description: >
   필자의 로컬 개발 환경인 Mac에서 ElasticSearch를 설치하고, 실행하는 과정을 기록하려 한다.
 sitemap: false
 hide_last_modified: false
-published: false
+published: true
 ---
 
 ---
