@@ -29,6 +29,36 @@ published: true
 
 ### 1.1. 패키지 우선 분리
 
+```plaintext
++----------------------------+
+|          Web UI           |  ← web/ (Thymeleaf Controller, ViewModel, etc.)
+|                            |
+|  +----------------------+  |
+|  |  View Templates      |  ← resources/templates/
+|  +----------------------+  |
++----------------------------+
+              |
+              v (REST HTTP)
++----------------------------+
+|      Presentation(API)     |  ← presentation/ (RestController - JSON 응답)
++----------------------------+
+              |
+              v
++----------------------------+
+|      Application           |  ← application/ (UseCase, Command, Dto)
++----------------------------+
+              |
+              v
++----------------------------+
+|          Domain            |  ← domain/ (Entity, Repository Interface, Domain Logic)
++----------------------------+
+     ^                  ^
+     |                  |
++-----------+     +--------------------+
+|   Common  |     |   Infrastructure   |
++-----------+     +--------------------+
+```
+
 처음 시도는 **Gradle 모듈을 건드리지 않고**, 단일 프로젝트 안에서 **패키지** 레벨로만 `Web` / `presentation` / `Application` / `Domain` / `Infrastructure` / `Common` 계층을 나누는 것이었다.
 
 ```bash
@@ -52,7 +82,6 @@ com.csalgo
 이렇게 출발선을 그어 두면, 모듈 → 마이크로서비스 전이는 “리포지터리 분할 + 네트워크 경계 삽입”만 추가하면 되는 `N+1` 단계 작업으로 수렴한다.
 
 > 💡 결국 멀티모듈 도입은 ‘아키텍처 결정을 미루는’ 게 아니라, ‘전환 가능성을 도입하는’ 방법이라고 판단하였다.
-> 
 
 ## 2. **목표 설정: 무엇을 얻고 싶었나?**
 
