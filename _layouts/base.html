@@ -17,17 +17,16 @@
 layout: compress
 ---
 
-{% assign plugins = site.plugins | default:site.gems %} {% assign author =
-site.data.authors[page.author] | default:site.data.authors.first[1] |
-default:site.author %} {% assign image = page.accent_image |
-default:site.accent_image | default:'/assets/img/sidebar-bg.jpg' %} {% assign
-color = page.accent_color | default:site.accent_color |
-default:'rgb(79,177,186)' %} {% assign theme_color = page.theme_color |
-default:site.theme_color | default:'rgb(8,46,57)' %}
+{% assign plugins = site.plugins | default:site.gems %}
+{% assign author = site.data.authors[page.author] | default:site.data.authors.first[1] | default:site.author %}
+{% assign image = page.accent_image | default:site.accent_image | default:'/assets/img/sidebar-bg.jpg' %}
+{% assign color = page.accent_color | default:site.accent_color | default:'rgb(79,177,186)' %}
+{% assign theme_color = page.theme_color | default:site.theme_color | default:'rgb(8,46,57)' %}
+
 <link rel="alternate" type="application/rss+xml" href="{{ site.url }}/feed.xml" title="{{ site.title }} Feed">
 <meta name="naver-site-verification" content="ca0c4544519b60c284a8b0ff51763d1b092d6eee" />
 <meta property="og:image" content="{{ site.og_image }}">
-<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+
 <head>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-GVW5DRM3KG"></script>
@@ -38,57 +37,14 @@ default:site.theme_color | default:'rgb(8,46,57)' %}
     gtag('config', 'G-GVW5DRM3KG');
   </script>
 
-  <!-- Mermaid 스크립트 (여기 한 번만 로드) -->
+  <!-- Mermaid 스크립트 -->
   <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      // 페이지가 완전히 로드된 후 Mermaid 초기화
-      mermaid.initialize({ 
-        startOnLoad: true,
-        theme: 'default'
-      });
-      
-      // 클래스 선택자를 사용하여 모든 Mermaid 다이어그램 렌더링
-      var elements = document.querySelectorAll('.language-mermaid');
-      elements.forEach(function(element) {
-        // 이미 렌더링된 요소는 건너뛰기
-        if (!element.classList.contains('mermaid')) {
-          element.classList.add('mermaid');
-          // Mermaid가 이 요소를 다시 처리하도록 설정
-          window.mermaid.init(undefined, element);
-        }
-      });
-    });
-    
-    // SPA나 동적 콘텐츠 로드에 대응하기 위한 MutationObserver 설정
-    document.addEventListener('DOMContentLoaded', function() {
-      // 새 콘텐츠가 추가될 때 mermaid 다이어그램 초기화
-      var observer = new MutationObserver(function(mutations) {
-        mutations.forEach(function(mutation) {
-          if (mutation.addedNodes && mutation.addedNodes.length > 0) {
-            // 새 노드에서 mermaid 다이어그램 찾기
-            var newElements = document.querySelectorAll('.language-mermaid:not(.mermaid)');
-            if (newElements.length > 0) {
-              newElements.forEach(function(element) {
-                element.classList.add('mermaid');
-                window.mermaid.init(undefined, element);
-              });
-            }
-          }
-        });
-      });
-      
-      // 문서 전체를 관찰
-      observer.observe(document.body, {
-        childList: true,
-        subtree: true
-      });
-    });
-  </script>
-  
+  <script src="{{ '/assets/js/mermaid-init.js' | relative_url }}"></script>
+
   {% include head/index.html %}
 </head>
 
 <body class="{% include_cached base-classes %}">
   {% include body/index.html %}
 </body>
+</html>

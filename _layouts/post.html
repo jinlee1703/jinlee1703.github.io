@@ -21,14 +21,6 @@ layout: base
 plus:0 %} {% assign minor = version[1] | plus:0 %} {% assign patch = version[2]
 | plus:0 %}
 
-<script>
-  mermaid.initialize({ startOnLoad: true });
-  window.mermaid.init(
-    undefined,
-    document.querySelectorAll(".language-mermaid")
-  );
-</script>
-
 {% include_cached components/post.html post=page no_link_title=true
 no_excerpt=true hide_image=page.hide_image
 hide_description=page.hide_description %}
