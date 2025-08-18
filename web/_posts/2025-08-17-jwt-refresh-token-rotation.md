@@ -193,4 +193,4 @@ RTR은 "탈취되더라도 재사용 시 즉시 탐지하고 차단한다"는 �
 필자의 사이드 프로젝트의 PR을 함께 첨부하여 상세한 예제를 제공하고자 한다.
 
 - [PR 1: 관리자 로그인 API 구현을 위한 사전 작업](https://github.com/TEAM-JJINS/cs-algo/pull/179)
-- [PR 2: 관리자 로그인 API 구현](https://github.com/TEAM-JJINS/cs-algo/pull/179)
+- [PR 2: 관리자 로그인 API 구현](https://github.com/TEAM-JJINS/cs-algo/pull/180)
