@@ -18,6 +18,12 @@
 # You may also provide a location, e.g.: en-us, de_AT.
 lang: kr
 
+# Time zone used to interpret post dates and render timestamps.
+# Without this, dates are read as UTC on the build server (Netlify),
+# so a post published just after KST midnight is treated as a future
+# post and dropped by Jekyll's default `future: false`.
+timezone: Asia/Seoul
+
 # The title of your blog. Used in the sidebar and the browser tab.
 title: 개발자 이진우
 
