@@ -1,8 +1,15 @@
+import PostList, { type PostListItem } from "@/components/PostList";
+import { getAllPosts, getAllCategories } from "@/lib/posts";
+
 export default function Home() {
+  const posts: PostListItem[] = getAllPosts().map(
+    ({ slug, title, date, category }) => ({ slug, title, date, category }),
+  );
+  const categories = getAllCategories();
+
   return (
-    <main className="mx-auto max-w-2xl px-6 py-24">
-      <h1 className="text-2xl font-bold">개발자 이진우</h1>
-      <p className="mt-2 text-[var(--muted)]">시간보다 중요한 건 밀도.</p>
+    <main className="mx-auto max-w-2xl px-6 py-12">
+      <PostList posts={posts} categories={categories} />
     </main>
   );
 }
