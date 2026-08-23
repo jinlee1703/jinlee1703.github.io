@@ -64,7 +64,7 @@ export default async function PostPage({
   const older = idx >= 0 && idx < all.length - 1 ? all[idx + 1] : null;
 
   return (
-    <main className="mx-auto max-w-2xl px-6 py-12">
+    <main className="mx-auto max-w-3xl px-6 py-12">
       <header className="mb-8">
         <div className="mb-3 flex items-center gap-2 text-sm text-[var(--muted)]">
           <span>{post.category}</span>
