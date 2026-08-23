@@ -71,26 +71,38 @@ export function groupByCategory(posts: { category: string }[]): CategoryCount[] 
 }
 
 // ── 파일시스템 기반 조회 (빌드 타임) ────────────────────────────────
+//
+// 콘텐츠 구조: content/posts/{category}/{slug}.md
+// URL 보존을 위해 slug는 날짜를 포함한 원본 파일명(확장자 제외)을 그대로 쓴다.
+// 예: content/posts/web/2025-07-05-server-sent-events-sse.md
+//     → /web/2025-07-05-server-sent-events-sse/
 
-/** content/posts/*.mdx 를 모두 읽어 published 글만 최신순으로 반환한다. */
+/** content/posts/{category}/*.md 를 모두 읽어 published 글만 최신순으로 반환한다. */
 export function getAllPosts(): Post[] {
   if (!fs.existsSync(POSTS_DIR)) return [];
-  const posts = fs
-    .readdirSync(POSTS_DIR)
-    .filter((f) => f.endsWith(".mdx"))
-    .map((f) => {
-      const slug = f.replace(/\.mdx$/, "");
-      const raw = fs.readFileSync(path.join(POSTS_DIR, f), "utf-8");
-      return parsePost(raw, slug);
-    })
-    .filter((p) => p.published);
-  return sortByDateDesc(posts);
+  const posts: Post[] = [];
+  for (const category of fs.readdirSync(POSTS_DIR)) {
+    const dir = path.join(POSTS_DIR, category);
+    if (!fs.statSync(dir).isDirectory()) continue;
+    for (const file of fs.readdirSync(dir)) {
+      if (!file.endsWith(".md")) continue;
+      const slug = file.replace(/\.md$/, "");
+      const raw = fs.readFileSync(path.join(dir, file), "utf-8");
+      posts.push(parsePost(raw, slug));
+    }
+  }
+  return sortByDateDesc(posts.filter((p) => p.published));
 }
 
-export function getPostBySlug(slug: string): Post | null {
-  const file = path.join(POSTS_DIR, `${slug}.mdx`);
+export function getPostBySlug(category: string, slug: string): Post | null {
+  const file = path.join(POSTS_DIR, category, `${slug}.md`);
   if (!fs.existsSync(file)) return null;
   return parsePost(fs.readFileSync(file, "utf-8"), slug);
+}
+
+/** 정적 경로 생성용 {category, slug} 목록. */
+export function getAllPostParams(): { category: string; slug: string }[] {
+  return getAllPosts().map((p) => ({ category: p.category, slug: p.slug }));
 }
 
 export function getAllCategories(): CategoryCount[] {
