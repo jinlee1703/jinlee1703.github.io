@@ -4,6 +4,7 @@ import {
   getAllPosts,
   getPostBySlug,
   getAllPostParams,
+  getRelatedPosts,
 } from "@/lib/posts";
 import { renderMarkdown } from "@/lib/markdown";
 import { extractToc } from "@/lib/toc";
@@ -81,6 +82,7 @@ export default async function PostPage({
   const newer = idx > 0 ? all[idx - 1] : null;
   const older = idx >= 0 && idx < all.length - 1 ? all[idx + 1] : null;
 
+  const related = getRelatedPosts(post.category, post.slug, 3);
   const url = `${SITE.url}/${post.category}/${post.slug}/`;
   const jsonLd = {
     "@context": "https://schema.org",
@@ -98,6 +100,7 @@ export default async function PostPage({
         articleSection: post.category,
         author: { "@type": "Person", name: SITE.author, url: SITE.url },
         publisher: { "@id": `${SITE.url}/#person` },
+        wordCount: post.content.trim().split(/\s+/).length,
       },
       {
         "@type": "BreadcrumbList",
@@ -178,6 +181,26 @@ export default async function PostPage({
           <span />
         )}
       </nav>
+
+      {related.length > 0 && (
+        <section className="mt-12">
+          <h2 className="mb-4 text-sm font-semibold text-[var(--muted)]">
+            관련 글
+          </h2>
+          <ul className="space-y-2">
+            {related.map((p) => (
+              <li key={p.slug}>
+                <Link
+                  href={`/${p.category}/${p.slug}/`}
+                  className="text-sm transition-colors hover:text-[var(--accent)]"
+                >
+                  {p.title}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
 
       <Comments />
     </main>

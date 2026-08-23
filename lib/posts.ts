@@ -112,3 +112,14 @@ export function getAllCategories(): CategoryCount[] {
 export function getPostsByCategory(category: string): Post[] {
   return getAllPosts().filter((p) => p.category === category);
 }
+
+/** 같은 카테고리의 다른 글을 최신순으로 반환한다. (관련 글 추천) */
+export function getRelatedPosts(
+  category: string,
+  slug: string,
+  limit = 3,
+): Post[] {
+  return getPostsByCategory(category)
+    .filter((p) => p.slug !== slug)
+    .slice(0, limit);
+}
