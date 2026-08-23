@@ -6,4 +6,7 @@ export const SITE = {
   tagline: "시간보다 중요한 건 밀도.",
   author: "이진우",
   authorUrl: "https://github.com/jinlee1703",
+  github: "https://github.com/jinlee1703",
+  linkedin: "https://www.linkedin.com/in/binarywooo/",
+  email: "jinlee1703@gmail.com",
 } as const;
