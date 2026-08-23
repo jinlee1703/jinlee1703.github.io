@@ -1,20 +1,41 @@
-# Hydejack Starter Kit
+# jinlee.kr
 
-A quicker, cleaner way to get started blogging with [Hydejack](https://hydejack.com/).
+개발자 이진우의 기술 블로그. Next.js(App Router) 정적 사이트로 GitHub Pages에 배포됩니다.
 
-## Quick Start
-### Running locally
-1. Clone repository (git users), or [download] and unzip.
-2. Open terminal, `cd` into root directory (where `_config.yml` is located)
-3. Run `bundle install` [^1]
-4. Run `bundle exec jekyll serve`
-5. Open <http://localhost:4000/hydejack-starter-kit/>
+## 스택
 
-## What's next?
-* Open files and read the comments
-* Read the [docs](https://hydejack.com/docs/)
-* Buy the [PRO version](https://hydejack.com/download/) to get the project and resume layout, newsletter subscription box, custom forms, and more.
+- **Next.js 15** (App Router, 정적 export)
+- **TypeScript** + **Tailwind CSS**
+- 마크다운 렌더: remark / rehype (GFM, 콜아웃, Shiki 코드 하이라이트, 목차)
+- 배포: GitHub Actions → GitHub Pages (커스텀 도메인 `jinlee.kr`)
 
-[^1]: Requires Bundler. Install with `gem install bundler`.
+## 개발
 
-[download]: https://github.com/hydecorp/hydejack-starter-kit/archive/master.zip
+```bash
+npm install
+npm run dev      # 개발 서버 (http://localhost:3000)
+npm test         # 단위 테스트 (vitest)
+npm run build    # 정적 빌드 → out/
+```
+
+## 글 작성
+
+`content/posts/{category}/{YYYY-MM-DD-slug}.md` 에 마크다운으로 추가합니다.
+
+```markdown
+---
+title: 글 제목
+date: 2026-01-01
+category: web
+description: 한 줄 요약
+---
+
+본문...
+```
+
+- `published: false` 를 넣으면 목록/배포에서 제외됩니다.
+- 이미지는 `public/assets/img/...` 에 두고 `/assets/img/...` 로 참조합니다.
+
+## 배포
+
+`main` 브랜치에 push하면 GitHub Actions가 테스트 → 빌드 → 배포를 수행합니다.
