@@ -74,6 +74,11 @@ export default async function PostPage({
         <h1 className="text-2xl font-bold leading-snug tracking-tight sm:text-3xl">
           {post.title}
         </h1>
+        {post.description && (
+          <p className="mt-4 whitespace-pre-line leading-relaxed text-[var(--muted)]">
+            {post.description}
+          </p>
+        )}
       </header>
 
       <Toc items={toc} />
