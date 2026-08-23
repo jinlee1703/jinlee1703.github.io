@@ -4,7 +4,7 @@ import ThemeToggle from "./ThemeToggle";
 export default function Header() {
   return (
     <header className="border-b border-[var(--border)]">
-      <div className="mx-auto flex max-w-2xl items-center justify-between px-6 py-4">
+      <div className="mx-auto flex max-w-3xl items-center justify-between px-6 py-4">
         <Link href="/" className="font-semibold tracking-tight">
           이진우
         </Link>

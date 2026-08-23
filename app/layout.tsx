@@ -45,7 +45,7 @@ export default function RootLayout({
         <Header />
         <div className="flex-1">{children}</div>
         <footer className="border-t border-[var(--border)]">
-          <div className="mx-auto flex max-w-2xl items-center justify-between px-6 py-8 text-sm text-[var(--muted)]">
+          <div className="mx-auto flex max-w-3xl items-center justify-between px-6 py-8 text-sm text-[var(--muted)]">
             <span>© 2026 이진우</span>
             <a
               href="/feed.xml"
