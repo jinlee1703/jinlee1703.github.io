@@ -8,7 +8,13 @@ export const metadata: Metadata = {
 
 export default function Home() {
   const posts: PostListItem[] = getAllPosts().map(
-    ({ slug, title, date, category }) => ({ slug, title, date, category }),
+    ({ slug, title, date, category, description }) => ({
+      slug,
+      title,
+      date,
+      category,
+      description,
+    }),
   );
   const categories = getAllCategories();
 
