@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 import { SITE } from "@/lib/site";
 import "./globals.css";
 
@@ -71,17 +72,7 @@ export default function RootLayout({
       <body className="flex min-h-screen flex-col">
         <Header />
         <div className="flex-1">{children}</div>
-        <footer className="border-t border-[var(--border)]">
-          <div className="mx-auto flex max-w-3xl items-center justify-between px-6 py-8 text-sm text-[var(--muted)]">
-            <span>© 2026 이진우</span>
-            <a
-              href="/feed.xml"
-              className="transition-colors hover:text-[var(--foreground)]"
-            >
-              RSS
-            </a>
-          </div>
-        </footer>
+        <Footer />
       </body>
     </html>
   );
