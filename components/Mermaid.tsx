@@ -21,8 +21,37 @@ export default function Mermaid() {
       const isDark = document.documentElement.classList.contains("dark");
       mermaid.initialize({
         startOnLoad: false,
-        theme: isDark ? "dark" : "default",
         securityLevel: "strict",
+        theme: "base",
+        fontFamily:
+          '"Pretendard Variable", Pretendard, system-ui, sans-serif',
+        themeVariables: isDark
+          ? {
+              fontSize: "14px",
+              primaryColor: "#1f2937",
+              primaryTextColor: "#ededed",
+              primaryBorderColor: "#374151",
+              lineColor: "#6b7280",
+              secondaryColor: "#1f2937",
+              tertiaryColor: "#171717",
+            }
+          : {
+              fontSize: "14px",
+              primaryColor: "#f9fafb",
+              primaryTextColor: "#1a1a1a",
+              primaryBorderColor: "#d1d5db",
+              lineColor: "#9ca3af",
+              secondaryColor: "#f3f4f6",
+              tertiaryColor: "#ffffff",
+            },
+        flowchart: {
+          curve: "basis",
+          htmlLabels: true,
+          padding: 14,
+          nodeSpacing: 50,
+          rankSpacing: 55,
+          useMaxWidth: true,
+        },
       });
       try {
         await mermaid.run({ nodes });
