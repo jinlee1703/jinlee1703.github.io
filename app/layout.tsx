@@ -1,10 +1,29 @@
 import type { Metadata } from "next";
 import Header from "@/components/Header";
+import { SITE } from "@/lib/site";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "개발자 이진우",
-  description: "시간보다 중요한 건 밀도.",
+  metadataBase: new URL(SITE.url),
+  title: {
+    default: SITE.title,
+    template: `%s | ${SITE.title}`,
+  },
+  description: SITE.description,
+  alternates: {
+    canonical: "/",
+    types: {
+      "application/rss+xml": "/feed.xml",
+    },
+  },
+  openGraph: {
+    type: "website",
+    locale: "ko_KR",
+    siteName: SITE.title,
+    title: SITE.title,
+    description: SITE.description,
+    url: SITE.url,
+  },
 };
 
 // hydration 이전에 테마를 적용해 다크모드 깜빡임(FOUC)을 방지한다.
@@ -26,8 +45,14 @@ export default function RootLayout({
         <Header />
         <div className="flex-1">{children}</div>
         <footer className="border-t border-[var(--border)]">
-          <div className="mx-auto max-w-2xl px-6 py-8 text-sm text-[var(--muted)]">
-            © 2026 이진우
+          <div className="mx-auto flex max-w-2xl items-center justify-between px-6 py-8 text-sm text-[var(--muted)]">
+            <span>© 2026 이진우</span>
+            <a
+              href="/feed.xml"
+              className="transition-colors hover:text-[var(--foreground)]"
+            >
+              RSS
+            </a>
           </div>
         </footer>
       </body>
