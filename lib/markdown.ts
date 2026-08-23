@@ -8,6 +8,7 @@ import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypePrettyCode from "rehype-pretty-code";
 import rehypeStringify from "rehype-stringify";
+import { rehypeMermaid } from "./rehype-mermaid";
 
 /**
  * 마크다운 본문을 HTML 문자열로 렌더한다. (빌드 타임)
@@ -23,6 +24,8 @@ export async function renderMarkdown(markdown: string): Promise<string> {
     .use(remarkGithubAlerts)
     .use(remarkRehype, { allowDangerousHtml: true })
     .use(rehypeRaw)
+    // mermaid 코드블록은 Shiki 하이라이트 전에 div.mermaid로 분리한다.
+    .use(rehypeMermaid)
     .use(rehypeSlug)
     .use(rehypeAutolinkHeadings, { behavior: "wrap" })
     .use(rehypePrettyCode, { theme: "github-dark", keepBackground: true })
