@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "소개",
   description: "백엔드 개발자 이진우를 소개합니다.",
+  alternates: { canonical: "/about/" },
 };
 
 export default function AboutPage() {

@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   },
   description: SITE.description,
   alternates: {
-    canonical: "/",
+    // canonical은 페이지별로 지정한다(레이아웃에 고정하면 모든 글이 홈으로 canonical됨).
     types: {
       "application/rss+xml": "/feed.xml",
     },
@@ -31,6 +31,29 @@ const themeScript = `
 (function(){try{var t=localStorage.getItem('theme');var m=window.matchMedia('(prefers-color-scheme: dark)').matches;if(t==='dark'||(!t&&m)){document.documentElement.classList.add('dark');}}catch(e){}})();
 `;
 
+// 사이트 전역 구조화 데이터: WebSite + Person (검색/AI가 사이트·저자를 이해)
+const siteJsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": `${SITE.url}/#website`,
+      url: `${SITE.url}/`,
+      name: SITE.title,
+      description: SITE.description,
+      inLanguage: "ko-KR",
+      publisher: { "@id": `${SITE.url}/#person` },
+    },
+    {
+      "@type": "Person",
+      "@id": `${SITE.url}/#person`,
+      name: SITE.author,
+      url: SITE.url,
+      sameAs: [SITE.authorUrl],
+    },
+  ],
+};
+
 export default function RootLayout({
   children,
 }: {
@@ -40,6 +63,10 @@ export default function RootLayout({
     <html lang="ko" suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(siteJsonLd) }}
+        />
       </head>
       <body className="flex min-h-screen flex-col">
         <Header />
