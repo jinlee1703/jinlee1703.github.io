@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getAllCategories, getPostsByCategory } from "@/lib/posts";
+import { SITE } from "@/lib/site";
 
 export const dynamicParams = false;
 
@@ -38,8 +39,38 @@ export default async function CategoryPage({
   const posts = getPostsByCategory(cat);
   if (posts.length === 0) notFound();
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "CollectionPage",
+        "@id": `${SITE.url}/${cat}/#collection`,
+        name: `${cat} 글 목록`,
+        url: `${SITE.url}/${cat}/`,
+        inLanguage: "ko-KR",
+        isPartOf: { "@id": `${SITE.url}/#website` },
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "홈", item: `${SITE.url}/` },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: cat,
+            item: `${SITE.url}/${cat}/`,
+          },
+        ],
+      },
+    ],
+  };
+
   return (
     <main className="mx-auto max-w-3xl px-6 py-12">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <header className="mb-8">
         <div className="mb-1 text-sm text-[var(--muted)]">
           <Link

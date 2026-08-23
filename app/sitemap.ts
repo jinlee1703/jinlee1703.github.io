@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { getAllPosts } from "@/lib/posts";
+import { getAllPosts, getAllCategories } from "@/lib/posts";
 import { SITE } from "@/lib/site";
 
 export const dynamic = "force-static";
@@ -10,6 +10,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: p.date,
     changeFrequency: "yearly" as const,
     priority: 0.8,
+  }));
+
+  const categories = getAllCategories().map((c) => ({
+    url: `${SITE.url}/${c.name}/`,
+    changeFrequency: "weekly" as const,
+    priority: 0.6,
   }));
 
   return [
@@ -23,6 +29,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly" as const,
       priority: 0.5,
     },
+    ...categories,
     ...posts,
   ];
 }
