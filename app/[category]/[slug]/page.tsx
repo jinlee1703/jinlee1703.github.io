@@ -9,6 +9,7 @@ import { renderMarkdown } from "@/lib/markdown";
 import { extractToc } from "@/lib/toc";
 import Toc from "@/components/Toc";
 import Mermaid from "@/components/Mermaid";
+import Comments from "@/components/Comments";
 
 export const dynamicParams = false;
 
@@ -111,6 +112,8 @@ export default async function PostPage({
           <span />
         )}
       </nav>
+
+      <Comments />
     </main>
   );
 }

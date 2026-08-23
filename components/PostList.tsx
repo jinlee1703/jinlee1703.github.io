@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { CategoryCount } from "@/lib/posts";
 
 export interface PostListItem {
@@ -10,6 +10,8 @@ export interface PostListItem {
   date: string;
   category: string;
 }
+
+const PAGE_SIZE = 20;
 
 function formatDate(iso: string): string {
   return iso.replace(/-/g, ".");
@@ -23,7 +25,35 @@ export default function PostList({
   categories: CategoryCount[];
 }) {
   const [active, setActive] = useState<string | null>(null);
-  const filtered = active ? posts.filter((p) => p.category === active) : posts;
+  const [visible, setVisible] = useState(PAGE_SIZE);
+  const sentinelRef = useRef<HTMLDivElement>(null);
+
+  const filtered = active
+    ? posts.filter((p) => p.category === active)
+    : posts;
+  const shown = filtered.slice(0, visible);
+  const hasMore = visible < filtered.length;
+
+  // 카테고리 필터가 바뀌면 처음부터 다시 보여준다.
+  useEffect(() => {
+    setVisible(PAGE_SIZE);
+  }, [active]);
+
+  // 무한 스크롤: sentinel이 뷰포트에 들어오면 다음 페이지를 노출한다.
+  useEffect(() => {
+    const el = sentinelRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setVisible((v) => v + PAGE_SIZE);
+        }
+      },
+      { rootMargin: "300px" },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, [hasMore, active]);
 
   const chip = (selected: boolean) =>
     `rounded-full px-3 py-1 text-sm transition-colors ${
@@ -50,7 +80,7 @@ export default function PostList({
       </div>
 
       <ul className="divide-y divide-[var(--border)]">
-        {filtered.map((p) => (
+        {shown.map((p) => (
           <li key={`${p.category}/${p.slug}`}>
             <Link
               href={`/${p.category}/${p.slug}/`}
@@ -69,6 +99,15 @@ export default function PostList({
           </li>
         ))}
       </ul>
+
+      {hasMore && (
+        <div
+          ref={sentinelRef}
+          className="py-8 text-center text-sm text-[var(--muted)]"
+        >
+          불러오는 중…
+        </div>
+      )}
     </>
   );
 }
