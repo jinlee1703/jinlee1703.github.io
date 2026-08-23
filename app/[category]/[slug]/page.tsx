@@ -8,6 +8,7 @@ import {
 import { renderMarkdown } from "@/lib/markdown";
 import { extractToc } from "@/lib/toc";
 import Toc from "@/components/Toc";
+import Mermaid from "@/components/Mermaid";
 
 export const dynamicParams = false;
 
@@ -80,6 +81,7 @@ export default async function PostPage({
         className="prose prose-neutral max-w-none dark:prose-invert"
         dangerouslySetInnerHTML={{ __html: html }}
       />
+      <Mermaid />
 
       <nav className="mt-16 grid grid-cols-1 gap-3 border-t border-[var(--border)] pt-8 sm:grid-cols-2">
         {older ? (

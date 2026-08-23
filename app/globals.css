@@ -99,6 +99,20 @@ a {
   margin: 1.5rem 0;
 }
 
+/* mermaid 다이어그램: 렌더 전 원본 코드 노출(FOUC) 방지, 렌더 후 중앙 정렬 */
+.prose .mermaid {
+  visibility: hidden;
+  text-align: center;
+  margin: 1.5rem 0;
+}
+.prose .mermaid[data-processed] {
+  visibility: visible;
+}
+.prose .mermaid svg {
+  max-width: 100%;
+  height: auto;
+}
+
 /* 콜아웃 (remark-github-alerts) */
 .markdown-alert {
   border-left: 4px solid var(--border);
