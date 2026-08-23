@@ -7,6 +7,7 @@ import {
 } from "@/lib/posts";
 import { renderMarkdown } from "@/lib/markdown";
 import { extractToc } from "@/lib/toc";
+import { SITE } from "@/lib/site";
 import Toc from "@/components/Toc";
 import Mermaid from "@/components/Mermaid";
 import Comments from "@/components/Comments";
@@ -30,9 +31,26 @@ export async function generateMetadata({
     decodeURIComponent(slug),
   );
   if (!post) return {};
+  const url = `${SITE.url}/${post.category}/${post.slug}/`;
   return {
     title: post.title,
     description: post.description,
+    alternates: { canonical: `/${post.category}/${post.slug}/` },
+    openGraph: {
+      type: "article",
+      url,
+      title: post.title,
+      description: post.description,
+      publishedTime: post.date,
+      modifiedTime: post.date,
+      authors: [SITE.author],
+      section: post.category,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.description,
+    },
   };
 }
 
@@ -63,8 +81,40 @@ export default async function PostPage({
   const newer = idx > 0 ? all[idx - 1] : null;
   const older = idx >= 0 && idx < all.length - 1 ? all[idx + 1] : null;
 
+  const url = `${SITE.url}/${post.category}/${post.slug}/`;
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BlogPosting",
+        "@id": `${url}#article`,
+        headline: post.title,
+        description: post.description,
+        datePublished: post.date,
+        dateModified: post.date,
+        inLanguage: "ko-KR",
+        url,
+        mainEntityOfPage: url,
+        articleSection: post.category,
+        author: { "@type": "Person", name: SITE.author, url: SITE.url },
+        publisher: { "@id": `${SITE.url}/#person` },
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "홈", item: `${SITE.url}/` },
+          { "@type": "ListItem", position: 2, name: post.title, item: url },
+        ],
+      },
+    ],
+  };
+
   return (
     <main className="mx-auto max-w-3xl px-6 py-12">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <header className="mb-8">
         <div className="mb-3 flex items-center gap-2 text-sm text-[var(--muted)]">
           <span>{post.category}</span>

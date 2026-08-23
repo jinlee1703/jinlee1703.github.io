@@ -1,5 +1,10 @@
+import type { Metadata } from "next";
 import PostList, { type PostListItem } from "@/components/PostList";
 import { getAllPosts, getAllCategories } from "@/lib/posts";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
 
 export default function Home() {
   const posts: PostListItem[] = getAllPosts().map(
