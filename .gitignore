@@ -39,7 +39,6 @@ validation-report.json
 
 # Folders to ignore
 node_modules
-package*.json
 vendor
 .sass-cache
 .jekyll-metadata
@@ -52,3 +51,11 @@ _zip
 
 /assets/js/*hydejack-*
 /_sass/*/__*__/*
+
+# Next.js
+/.next/
+/out/
+next-env.d.ts
+*.tsbuildinfo
+.env*.local
+.vercel
