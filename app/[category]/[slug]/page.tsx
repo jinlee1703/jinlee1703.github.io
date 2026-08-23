@@ -103,7 +103,13 @@ export default async function PostPage({
         "@type": "BreadcrumbList",
         itemListElement: [
           { "@type": "ListItem", position: 1, name: "홈", item: `${SITE.url}/` },
-          { "@type": "ListItem", position: 2, name: post.title, item: url },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: post.category,
+            item: `${SITE.url}/${post.category}/`,
+          },
+          { "@type": "ListItem", position: 3, name: post.title, item: url },
         ],
       },
     ],
@@ -117,7 +123,12 @@ export default async function PostPage({
       />
       <header className="mb-8">
         <div className="mb-3 flex items-center gap-2 text-sm text-[var(--muted)]">
-          <span>{post.category}</span>
+          <Link
+            href={`/${post.category}/`}
+            className="transition-colors hover:text-[var(--foreground)]"
+          >
+            {post.category}
+          </Link>
           <span>·</span>
           <time>{formatDate(post.date)}</time>
         </div>
