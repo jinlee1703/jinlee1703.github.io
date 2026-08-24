@@ -7,7 +7,6 @@ description: 개발계 백엔드 20개 서비스의 CPU request를 낮추자 배
 
 ---
 
-> ⚠️ 초안(draft).
 
 ## 1. 증상
 
