@@ -55,6 +55,7 @@ _zip
 # Next.js
 /.next/
 /out/
+/public/og/
 next-env.d.ts
 *.tsbuildinfo
 .env*.local
