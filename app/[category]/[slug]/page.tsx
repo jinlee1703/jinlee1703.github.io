@@ -100,6 +100,7 @@ export default async function PostPage({
         inLanguage: "ko-KR",
         url,
         mainEntityOfPage: url,
+        isPartOf: { "@id": `${SITE.url}/#blog` },
         articleSection: post.category,
         author: { "@type": "Person", name: SITE.author, url: SITE.url },
         publisher: { "@id": `${SITE.url}/#person` },

@@ -25,6 +25,14 @@ export const metadata: Metadata = {
     description: SITE.description,
     url: SITE.url,
   },
+  // 검색/AI Overviews에 큰 이미지 미리보기와 전체 스니펫 허용
+  robots: {
+    index: true,
+    follow: true,
+    "max-image-preview": "large",
+    "max-snippet": -1,
+    "max-video-preview": -1,
+  },
 };
 
 // hydration 이전에 테마를 적용해 다크모드 깜빡임(FOUC)을 방지한다.
@@ -50,7 +58,7 @@ const siteJsonLd = {
       "@id": `${SITE.url}/#person`,
       name: SITE.author,
       url: SITE.url,
-      sameAs: [SITE.authorUrl],
+      sameAs: [SITE.github, SITE.linkedin],
     },
   ],
 };
