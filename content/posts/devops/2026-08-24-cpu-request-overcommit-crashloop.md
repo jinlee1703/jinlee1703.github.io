@@ -1,5 +1,5 @@
 ---
-title: CPU request를 낮췄더니 오버커밋으로 배포가 멈췄다
+title: 오버커밋 배포 장애 회고
 date: '2026-08-24'
 category: devops
 description: 개발계 백엔드 20개 서비스의 CPU request를 낮추자 배포가 무한 Progressing에 빠졌다. 스케줄러가 request만 보고 한 노드에 파드를 과밀 배치했고, 동시에 콜드스타트한 JVM들이 CPU 기아에 빠져 CrashLoop이 반복됐다. 노드별 재시작 분포로 원인을 규명하고 재발 방지책을 정리한다.
