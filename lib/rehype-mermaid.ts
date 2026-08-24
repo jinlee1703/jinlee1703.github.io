@@ -44,3 +44,19 @@ export function rehypeMermaid() {
     walk(tree);
   };
 }
+
+/** 본문 이미지에 lazy loading + async decoding을 부여한다. (Core Web Vitals) */
+function applyImageAttrs(node: HastNode): void {
+  if (node.tagName === "img") {
+    node.properties = node.properties ?? {};
+    node.properties.loading = "lazy";
+    node.properties.decoding = "async";
+  }
+  node.children?.forEach(applyImageAttrs);
+}
+
+export function rehypeImageAttrs() {
+  return (tree: HastNode): void => {
+    applyImageAttrs(tree);
+  };
+}
