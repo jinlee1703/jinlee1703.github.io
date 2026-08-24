@@ -5,6 +5,8 @@
   "description": "개발자 이진우 블로그 (Next.js)",
   "scripts": {
     "dev": "next dev",
+    "og": "tsx scripts/generate-og.tsx",
+    "prebuild": "tsx scripts/generate-og.tsx",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",

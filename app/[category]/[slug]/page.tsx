@@ -33,6 +33,7 @@ export async function generateMetadata({
   );
   if (!post) return {};
   const url = `${SITE.url}/${post.category}/${post.slug}/`;
+  const ogImage = `${SITE.url}/og/${post.category}/${post.slug}.png`;
   return {
     title: post.title,
     description: post.description,
@@ -46,11 +47,13 @@ export async function generateMetadata({
       modifiedTime: post.date,
       authors: [SITE.author],
       section: post.category,
+      images: [{ url: ogImage, width: 1200, height: 630 }],
     },
     twitter: {
       card: "summary_large_image",
       title: post.title,
       description: post.description,
+      images: [ogImage],
     },
   };
 }
@@ -100,6 +103,7 @@ export default async function PostPage({
         articleSection: post.category,
         author: { "@type": "Person", name: SITE.author, url: SITE.url },
         publisher: { "@id": `${SITE.url}/#person` },
+        image: `${SITE.url}/og/${post.category}/${post.slug}.png`,
         wordCount: post.content.trim().split(/\s+/).length,
       },
       {
