@@ -2,7 +2,6 @@
 title: 클린 코드
 author: 로버트 C. 마틴
 date: 2025-03-01
-rating: 5
 link: https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=34083680
 ---
 

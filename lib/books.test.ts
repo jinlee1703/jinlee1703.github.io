@@ -20,7 +20,6 @@ describe("parseBook", () => {
     expect(book.title).toBe("클린 코드");
     expect(book.author).toBe("로버트 C. 마틴");
     expect(book.cover).toBe("/books/clean-code.jpg");
-    expect(book.rating).toBe(5);
     expect(book.link).toBe("https://example.com/clean-code");
   });
 
@@ -34,11 +33,10 @@ describe("parseBook", () => {
     );
   });
 
-  it("선택 필드(cover/rating/link)가 없으면 undefined다", () => {
+  it("선택 필드(cover/link)가 없으면 undefined다", () => {
     const raw = `---\ntitle: 제목만\nauthor: 저자\ndate: 2025-01-01\n---\n본문`;
     const book = parseBook(raw, "x");
     expect(book.cover).toBeUndefined();
-    expect(book.rating).toBeUndefined();
     expect(book.link).toBeUndefined();
   });
 
