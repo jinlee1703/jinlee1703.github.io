@@ -2,11 +2,28 @@
 title: 오버커밋 배포 장애 회고
 date: '2026-08-24'
 category: devops
+published: false
 description: 개발계 백엔드 20개 서비스의 CPU request를 낮추자 배포가 무한 Progressing에 빠졌다. 스케줄러가 request만 보고 한 노드에 파드를 과밀 배치했고, 동시에 콜드스타트한 JVM들이 CPU 기아에 빠져 CrashLoop이 반복됐다. 노드별 재시작 분포로 원인을 규명하고 재발 방지책을 정리한다.
 ---
 
 ---
 
+
+## 0. 들어가기 전에: request와 limit, 그리고 오버커밋
+
+&nbsp; 이 글은 개발계에서 CPU request를 낮췄다가 배포가 끝나지 않고 교착됐던 이야기다. 원인을 이해하려면 쿠버네티스가 CPU를 다루는 방식을 먼저 알아야 한다. request, limit, 오버커밋 세 가지만 짚고 넘어가자.
+
+&nbsp; **request는 스케줄러가 이 파드를 어느 노드에 놓을지 정할 때만 쓰는 숫자다.** 노드마다 CPU 총량이 정해져 있고(예: 8코어 = 8000m), 스케줄러는 그 노드에 이미 올라간 파드들의 request를 전부 더해 남은 자리를 계산한다. 파드에 `CPU request 25m`이라고 적으면 "이 파드는 25m어치 자리를 차지한다"고 셈에 넣고, request 합계가 노드 총량을 넘지 않는 선까지 파드를 채운다.
+
+&nbsp; 함정은 이 숫자가 실제 CPU를 떼어놓지 않는다는 데 있다. `25m`라고 적어도 그 파드에 25m가 보장되는 것도, 25m로 제한되는 것도 아니다. 자리 계산에 쓰는 값일 뿐, 파드가 런타임에 실제로 몇 m를 쓰는지와는 완전히 별개다. 스케줄러는 정의한 request의 합만 보고 노드가 붐비는지 한가한지 판단한다. 실사용량은 아예 보지 않는다. 실사용량을 관찰하는 건 HPA나 VPA 같은 오토스케일러의 몫이다. 다만 이들은 파드 수를 늘리거나 request 값을 나중에 조정할 뿐, "지금 이 파드를 어느 노드에 놓을지"라는 배치 결정은 여전히 스케줄러가 request만으로 내린다. 이번 장애도 그 배치 단계에서 시작됐다.
+
+&nbsp; **limit은 실제로 쓸 수 있는 상한이다.** limit을 걸면 파드는 그 이상 CPU를 못 쓴다. 이 글의 서비스들은 CPU limit이 없었고(그래서 QoS가 Burstable이다), limit이 없으면 노드에 남는 CPU가 있을 때 신고값(25m)을 훌쩍 넘겨 끌어다 쓸 수 있다. JVM 부팅처럼 순간적으로 CPU가 몰리는 구간엔 이게 유리하다. 단, **남는 CPU가 있을 때의 얘기다.**
+
+&nbsp; **문제는 정의한 request와 실제 수요가 벌어질 때 생긴다. 이 간극이 오버커밋이다.** 항공사 오버부킹을 떠올리면 쉽다. 항공사는 좌석 수보다 표를 더 판다. 보통은 노쇼가 있어 괜찮지만, 예약자가 전부 나타나면 좌석이 모자란다. request를 낮추는 것도 같은 베팅이다. "파드들이 정의한 값만큼만, 그것도 동시에 몰려 쓰지는 않겠지"에 거는 것이다. 실제로 이 서비스들의 운영 중 CPU는 평균 3~15m라 평소엔 이 베팅이 맞다. 하지만 20개 JVM이 동시에 부팅하며 저마다 코어 단위 CPU를 요구하는 순간, 그러니까 예약자가 전부 나타난 순간 물리 CPU라는 좌석이 부족해진다.
+
+&nbsp; 마지막으로, CPU가 부족해 파드들이 경합하면 누가 얼마나 받을까? 여기서도 request가 쓰인다. 리눅스는 request 값을 가중치(`cpu.shares`)로 삼아 CPU를 비례 배분한다. request 25m인 파드의 가중치는 1024분의 25 꼴이라, 경합이 터지면 CPU를 아주 조금씩만 받는다. 즉 request를 낮춘다는 건 배치를 조밀하게 만들 뿐 아니라, **정작 경합이 벌어졌을 때 받을 몫까지 줄이는** 셈이다.
+
+&nbsp; 정리하면 request 하나가 두 가지 일을 한다. 스케줄러의 **배치 밀도**를 정하고, 경합 시 **CPU 배분 몫**을 정한다. 이번 장애는 request를 낮추면서 이 둘이 동시에 나쁜 쪽으로 작동한 결과다. 이제 실제로 무슨 일이 있었는지 보자.
 
 ## 1. 증상
 
@@ -18,7 +35,7 @@ description: 개발계 백엔드 20개 서비스의 CPU request를 낮추자 배
 Waiting for rollout to finish: 1 old replicas are pending termination
 ```
 
-&nbsp; `maxUnavailable 0` 설정 덕분에 구 파드가 유지되어 서비스 장애는 없었다. 다만 새 파드가 Ready가 되질 못하니 구 파드도 종료되지 못했고, 배포는 무한 Progressing 상태로 교착됐다.
+&nbsp; `maxUnavailable 0` 설정 덕분에 구 버전의 파드가 유지되어 서비스 장애는 없었다. 다만 새 파드가 Ready가 되질 못하니 구 버전의 파드도 종료되지 못했고, 배포는 무한 Progressing 상태로 교착됐다.
 
 &nbsp; 당시 리소스, 프로브 설정은 아래와 같았다. 뒤에서 이 값들이 하나씩 작동한다.
 
@@ -26,13 +43,18 @@ Waiting for rollout to finish: 1 old replicas are pending termination
 - RollingUpdate `maxSurge 1 / maxUnavailable 0`
 - liveness `initialDelay 40s / period 5s / failureThreshold 3`, readiness `initialDelay 20s`, **`startupProbe` 없음**
 
+&nbsp; 익숙지 않은 설정부터 풀어두자.
+
+- **Burstable**: 쿠버네티스는 request와 limit을 어떻게 걸었는지로 파드의 QoS(서비스 품질) 등급을 나눈다. 둘이 같으면 Guaranteed, 아무것도 없으면 BestEffort, 이 글처럼 request만 있고 limit이 없으면 **Burstable**이다. Burstable 파드는 request만큼은 확보하되 노드에 CPU가 남으면 그 이상으로 끌어다 쓸 수 있고, 대신 노드가 붐비면 우선순위가 뒤로 밀린다.
+- **maxSurge / maxUnavailable**: RollingUpdate가 구 버전 파드를 새 버전으로 갈아끼우는 속도를 정한다. `maxSurge 1`은 교체 중 정원보다 파드를 최대 1개까지 더 띄워도 된다는 뜻이고, `maxUnavailable 0`은 교체 중에도 가용 파드가 정원 아래로 내려가면 안 된다는 뜻이다. 둘을 합치면 "새 파드가 Ready가 된 뒤에야 구 버전 파드를 내린다"는 무중단 교체 규칙이 된다. 앞서 서비스 장애가 없었던 이유다.
+
 &nbsp; 프로브는 쿠버네티스가 컨테이너 상태를 주기적으로 확인하는 헬스체크다. 세 종류가 있고 하는 일이 다르다.
 
 - **livenessProbe**: 컨테이너가 살아있는지 확인한다. 실패하면 kubelet이 컨테이너를 재시작한다.
 - **readinessProbe**: 트래픽을 받을 준비가 됐는지 확인한다. 실패하면 서비스에서 잠시 빼고, 재시작은 하지 않는다.
 - **startupProbe**: 부팅이 끝났는지 확인한다. 이게 통과하기 전까지 liveness, readiness 판정을 미뤄서, 느린 부팅이 liveness에 걸려 죽는 것을 막는다.
 
-&nbsp; 파라미터 중 `initialDelay`는 컨테이너 시작 후 첫 검사까지 대기하는 시간, `period`는 검사 주기, `failureThreshold`는 연속 몇 번 실패하면 조치할지를 정한다. 위 설정이면 liveness는 컨테이너가 뜨고 40초 뒤부터 5초 간격으로 검사하고, 3번 연속 실패하면 재시작한다. startupProbe가 없으니 부팅이 이 임계(약 55초)를 넘기면 그대로 죽는다.
+&nbsp; 파라미터 중 `initialDelay`는 컨테이너 시작 후 첫 검사까지 대기하는 시간, `period`는 검사 주기, `failureThreshold`는 연속 몇 번 실패하면 조치할지를 정한다. 위 설정이면 liveness는 컨테이너가 뜨고 40초 뒤부터 5초 간격으로 검사하고, 3번 연속 실패하면 재시작한다. readiness는 20초 뒤부터 검사를 시작해, 통과하기 전까지는 트래픽을 주지 않는다. startupProbe가 없으니 부팅이 이 임계(약 55초)를 넘기면 그대로 죽는다.
 
 ## 2. 원인
 
@@ -42,11 +64,11 @@ Waiting for rollout to finish: 1 old replicas are pending termination
 
 | 노드 | 신규 파드 수 | 재시작 횟수 |
 |---|---|---|
-| **10-0-33-223** | **12** | **44** |
-| 10-0-19-125 | 5 | 2 |
-| 10-0-23-90 | 3 | 0 |
-| 10-0-45-21 | 2 | 0 |
-| 10-0-61-39 | 1 | 0 |
+| **Node 1** | **12** | **44** |
+| Node 2 | 5 | 2 |
+| Node 3 | 3 | 0 |
+| Node 4 | 2 | 0 |
+| Node 5 | 1 | 0 |
 
 &nbsp; 총 재시작 46회 중 44회(96%)가 파드 12개가 몰린 한 노드에 집중됐고, 파드가 1~3개인 노드는 재시작이 0이었다. 설정이 문제였다면 나올 수 없는 분포다. 그 노드에서 자원 경합, 즉 과밀 배치가 일어났다고 봐야 한다.
 
@@ -75,7 +97,7 @@ Waiting for rollout to finish: 1 old replicas are pending termination
 
 ## 4. 재발 방지 방법
 
-&nbsp; 교훈을 나열하는 대신, 위 과정에서 어느 단계를 막을 수 있는가를 정리하고자 한다. 이 중 한 단계만 막아도 CrashLoop은 이어지지 않는다.
+&nbsp; 위 과정에서 어느 단계를 막을 수 있는지 정리한다. 이 중 한 단계만 막아도 CrashLoop은 이어지지 않는다.
 
 | 대책 | 막는 단계 | 효과 |
 |---|---|---|
@@ -85,7 +107,11 @@ Waiting for rollout to finish: 1 old replicas are pending termination
 | **CPU limit 명시 + JVM `ActiveProcessorCount` 고정** | ③④ | 컨테이너가 인식하는 코어 수를 제어해, 스레드풀, JIT 병렬도를 예측 가능하게 하고 부팅 폭주를 억제한다 |
 | **`startupProbe` 도입** | ⑤ | 부팅 구간과 운영 구간을 분리해, 느린 부팅이 liveness kill로 이어지지 않게 한다 |
 
-&nbsp; 관측 측면에서 하나 더. request 기반 오토스케일러는 이런 오버커밋을 잡지 못한다. 파드가 Pending 없이 Scheduled로 뜨기 때문에 Cluster Autoscaler는 개입하지 않는다. 노드 수가 그대로라고 해서 여유가 있다는 뜻은 아니다.
+&nbsp; request 기반 오토스케일러는 이런 오버커밋을 잡지 못한다. 파드가 Pending 없이 Scheduled로 뜨기 때문에 Cluster Autoscaler는 개입하지 않는다. 노드 수가 그대로라고 해서 여유가 있다는 뜻은 아니다.
+
+> **참고: request를 낮추면 관측 지표가 빠질 수 있다**
+>
+> Datadog `dd-java-agent`는 컨테이너가 뜰 때 JMXFetch로 JVM 지표를 수집하는데, request가 25m처럼 낮으면 초기화 단계에서 CPU를 못 받아 JMXFetch가 뜨지 못하고 JVM 메트릭이 통째로 빠진다. 개발계 4개 서비스에서 실제로 이 유실을 겪었고, request를 50m로 되돌리자 지표가 돌아왔다. request를 줄일 때는 성능뿐 아니라 관측 하한도 같이 봐야 한다.
 
 ## 5. 왜 저절로 복구됐는가?
 
@@ -100,3 +126,5 @@ Waiting for rollout to finish: 1 old replicas are pending termination
 ## 6. 마무리
 
 &nbsp; request는 스케줄링 밀도를 결정한다. 값을 낮추면 파드가 더 조밀하게 배치되고, 부팅 피크가 겹치면 이번처럼 무너진다. request는 콜드스타트 피크를 기준으로 잡아야 한다. 그것으로 부족하면 배치(topology)/동시성(sync wave)/부팅 격리(startupProbe)로 여러 단계를 겹쳐서 막아둘 수 있다.
+
+&nbsp; **한 줄로 요약하면, request를 낮춰 파드를 한 노드에 몰았더니 그 파드들의 실사용량이 동시에 터지며 노드의 물리 CPU 상한을 넘어선 것이다.** 노드 장부상 request 합계는 300m로 텅 비어 보였지만, 상한을 넘긴 건 request가 아니라 실수요였다.
