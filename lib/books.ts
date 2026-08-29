@@ -9,7 +9,6 @@ export interface BookMeta {
   author: string;
   date: string;
   cover?: string;
-  rating?: number;
   link?: string;
 }
 
@@ -41,7 +40,6 @@ export function parseBook(fileContent: string, slug: string): Book {
     author: typeof data.author === "string" ? data.author : "",
     date: normalizeDate(data.date),
     cover: typeof data.cover === "string" ? data.cover : undefined,
-    rating: typeof data.rating === "number" ? data.rating : undefined,
     link: typeof data.link === "string" ? data.link : undefined,
     content,
   };

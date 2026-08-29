@@ -27,15 +27,6 @@ function formatDate(iso: string): string {
   return iso.replace(/-/g, ".");
 }
 
-function Stars({ rating }: { rating: number }) {
-  return (
-    <span aria-label={`별점 ${rating}점`} className="text-[var(--accent)]">
-      {"★".repeat(rating)}
-      <span className="text-[var(--border)]">{"★".repeat(5 - rating)}</span>
-    </span>
-  );
-}
-
 export default async function BookPage({ params }: { params: Promise<Params> }) {
   const { slug } = await params;
   const book = getBookBySlug(decodeURIComponent(slug));
@@ -54,15 +45,6 @@ export default async function BookPage({ params }: { params: Promise<Params> }) 
       name: book.title,
       ...(book.author ? { author: { "@type": "Person", name: book.author } } : {}),
     },
-    ...(book.rating
-      ? {
-          reviewRating: {
-            "@type": "Rating",
-            ratingValue: book.rating,
-            bestRating: 5,
-          },
-        }
-      : {}),
     author: { "@id": `${SITE.url}/#person` },
     datePublished: book.date,
   };
@@ -100,7 +82,6 @@ export default async function BookPage({ params }: { params: Promise<Params> }) 
             <p className="mt-1 text-[var(--muted)]">{book.author}</p>
           )}
           <div className="mt-3 flex flex-wrap items-center gap-3 text-sm text-[var(--muted)]">
-            {typeof book.rating === "number" && <Stars rating={book.rating} />}
             <time>{formatDate(book.date)}</time>
             {book.link && (
               <a
