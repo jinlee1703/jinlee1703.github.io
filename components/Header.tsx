@@ -16,6 +16,12 @@ export default function Header() {
             글
           </Link>
           <Link
+            href="/bookshelf/"
+            className="rounded-md px-2 py-1 transition-colors hover:text-[var(--foreground)]"
+          >
+            책
+          </Link>
+          <Link
             href="/about/"
             className="rounded-md px-2 py-1 transition-colors hover:text-[var(--foreground)]"
           >
