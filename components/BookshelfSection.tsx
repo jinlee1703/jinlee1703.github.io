@@ -10,7 +10,7 @@ export default function BookshelfSection() {
     <section className="mb-12">
       <div className="mb-4 flex items-baseline justify-between">
         <h2 className="text-sm font-semibold tracking-wide text-[var(--muted)]">
-          읽은 책
+          책장
         </h2>
         <Link
           href="/bookshelf/"
