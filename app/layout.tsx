@@ -11,6 +11,15 @@ export const metadata: Metadata = {
     template: `%s | ${SITE.title}`,
   },
   description: SITE.description,
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/favicon-32x32.png", type: "image/png", sizes: "32x32" },
+      { url: "/icon-192.png", type: "image/png", sizes: "192x192" },
+    ],
+    apple: "/apple-icon.png",
+  },
   alternates: {
     // canonical은 페이지별로 지정한다(레이아웃에 고정하면 모든 글이 홈으로 canonical됨).
     types: {
