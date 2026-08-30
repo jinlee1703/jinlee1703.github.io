@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "next dev",
     "og": "tsx scripts/generate-og.tsx",
+    "favicon": "tsx scripts/generate-favicon.tsx",
     "prebuild": "tsx scripts/generate-og.tsx",
     "build": "next build",
     "start": "next start",
