@@ -10,7 +10,7 @@ export default function Header() {
         </Link>
         <nav className="flex items-center gap-1 text-sm text-[var(--muted)]">
           <Link
-            href="/"
+            href="/posts/"
             className="rounded-md px-2 py-1 transition-colors hover:text-[var(--foreground)]"
           >
             글
