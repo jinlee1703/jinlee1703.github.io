@@ -16,8 +16,6 @@ export function GET() {
 
 > ${SITE.description}
 
-${SITE.tagline}
-
 ## 글 목록
 
 ${lines.join("\n")}

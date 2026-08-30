@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "소개",
-  description: "백엔드 엔지니어 이진우입니다.",
+  description: "무언가에 몰입할 때 가장 행복한 개발자 이진우입니다.",
   alternates: { canonical: "/about/" },
 };
 
@@ -11,7 +11,7 @@ export default function AboutPage() {
     <main className="mx-auto max-w-3xl px-6 py-12">
       <article className="prose prose-neutral max-w-none dark:prose-invert">
         <h1>소개</h1>
-        <p>안녕하세요, 백엔드 엔지니어 이진우입니다.</p>
+        <p>안녕하세요. 무언가에 몰입할 때 가장 행복한 개발자 이진우입니다.</p>
         <p>
           기술로 문제를 푸는 것만큼 &ldquo;왜 이 문제를 푸는가&rdquo;를 아는 게
           중요하다고 믿습니다. 요구사항을 받아 구현하는 데서 멈추지 않고, 제품과
