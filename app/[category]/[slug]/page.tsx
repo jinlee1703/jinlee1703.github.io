@@ -10,6 +10,7 @@ import { renderMarkdown } from "@/lib/markdown";
 import { extractToc } from "@/lib/toc";
 import { SITE } from "@/lib/site";
 import Toc from "@/components/Toc";
+import TocSidebar from "@/components/TocSidebar";
 import Mermaid from "@/components/Mermaid";
 import Comments from "@/components/Comments";
 
@@ -124,7 +125,8 @@ export default async function PostPage({
   };
 
   return (
-    <main className="mx-auto max-w-3xl px-6 py-12">
+    <div className="relative mx-auto max-w-3xl px-6 py-12">
+      <main className="min-w-0">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -150,7 +152,9 @@ export default async function PostPage({
         )}
       </header>
 
-      <Toc items={toc} />
+      <div className="xl:hidden">
+        <Toc items={toc} />
+      </div>
 
       <article
         className="prose prose-neutral max-w-none dark:prose-invert"
@@ -208,6 +212,15 @@ export default async function PostPage({
       )}
 
       <Comments />
-    </main>
+      </main>
+
+      {toc.length > 0 && (
+        <aside className="absolute inset-y-0 left-full hidden xl:block">
+          <div className="sticky top-24 ml-8 max-h-[calc(100vh-8rem)] w-56 overflow-y-auto">
+            <TocSidebar items={toc} />
+          </div>
+        </aside>
+      )}
+    </div>
   );
 }
