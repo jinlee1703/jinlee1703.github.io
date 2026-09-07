@@ -107,8 +107,26 @@ a {
   visibility: visible;
 }
 .prose .mermaid svg {
+  display: block;
   max-width: 100%;
   height: auto;
+  margin: 0 auto;
+}
+/* handDrawn 룩의 빗금(hachure) 채우기 위에서 라벨이 묻히지 않게 — 라벨에 배경 칩.
+   classDef의 텍스트 색이 밝은 배경 전제의 진한 색이므로, 칩은 다크 모드에서도 항상 밝게 유지한다 */
+.prose .mermaid .nodeLabel {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.88);
+  border-radius: 4px;
+  padding: 0.1em 0.4em;
+  line-height: 1.35;
+}
+.prose .mermaid .nodeLabel p {
+  margin: 0;
+}
+/* 엣지 라벨도 동일 처리 */
+.prose .mermaid .edgeLabel {
+  border-radius: 4px;
 }
 
 /* 콜아웃 (remark-github-alerts) */
