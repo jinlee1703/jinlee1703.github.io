@@ -1,8 +1,8 @@
 import { GA_IDS, gtagSrc, gtagInitScript } from "./analytics";
 
 describe("Google Analytics", () => {
-  it("Jekyll 시절에 쓰던 두 측정 ID를 모두 유지한다", () => {
-    expect(GA_IDS).toEqual(["G-GVW5DRM3KG", "G-D0EJL6FSZR"]);
+  it("Blog 속성의 측정 ID 하나로만 수집한다", () => {
+    expect(GA_IDS).toEqual(["G-GVW5DRM3KG"]);
   });
 
   it("gtag 로더 주소는 첫 번째 측정 ID로 만든다", () => {
