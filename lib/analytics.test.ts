@@ -1,6 +1,18 @@
-import { GA_IDS, gtagSrc, gtagInitScript } from "./analytics";
+import { GA_IDS, gtagSrc, gtagInitScript, isAnalyticsEnabled } from "./analytics";
 
 describe("Google Analytics", () => {
+  it("프로덕션 빌드에서만 수집을 켠다", () => {
+    expect(isAnalyticsEnabled("production")).toBe(true);
+  });
+
+  it("로컬 개발 서버에서는 수집하지 않는다", () => {
+    expect(isAnalyticsEnabled("development")).toBe(false);
+  });
+
+  it("테스트 환경에서는 수집하지 않는다", () => {
+    expect(isAnalyticsEnabled("test")).toBe(false);
+  });
+
   it("Blog 속성의 측정 ID 하나로만 수집한다", () => {
     expect(GA_IDS).toEqual(["G-GVW5DRM3KG"]);
   });

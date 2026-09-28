@@ -2,7 +2,12 @@ import type { Metadata } from "next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { SITE } from "@/lib/site";
-import { GA_IDS, gtagSrc, gtagInitScript } from "@/lib/analytics";
+import {
+  GA_IDS,
+  gtagSrc,
+  gtagInitScript,
+  isAnalyticsEnabled,
+} from "@/lib/analytics";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -91,8 +96,14 @@ export default function RootLayout({
           href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css"
         />
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
-        <script async src={gtagSrc(GA_IDS)} />
-        <script dangerouslySetInnerHTML={{ __html: gtagInitScript(GA_IDS) }} />
+        {isAnalyticsEnabled(process.env.NODE_ENV) && (
+          <>
+            <script async src={gtagSrc(GA_IDS)} />
+            <script
+              dangerouslySetInnerHTML={{ __html: gtagInitScript(GA_IDS) }}
+            />
+          </>
+        )}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(siteJsonLd) }}
