@@ -44,6 +44,10 @@ export default function Mermaid() {
                 lineColor: "#9ca3af",
                 secondaryColor: "#1f2937",
                 tertiaryColor: "#171717",
+                // subgraph(cluster) 박스·타이틀 — 다크 배경에서 테두리·제목이 보이게
+                clusterBkg: "transparent",
+                clusterBorder: "#4b5563",
+                titleColor: "#ededed",
                 // pie 차트 텍스트 — 다크 배경에서 제목·범례가 보이게
                 pieTitleTextColor: "#ededed",
                 pieLegendTextColor: "#ededed",
@@ -58,6 +62,9 @@ export default function Mermaid() {
                 lineColor: "#9ca3af",
                 secondaryColor: "#f3f4f6",
                 tertiaryColor: "#ffffff",
+                clusterBkg: "transparent",
+                clusterBorder: "#cbd5e1",
+                titleColor: "#1a1a1a",
                 pieTitleTextColor: "#1a1a1a",
                 pieLegendTextColor: "#1a1a1a",
                 pieSectionTextColor: "#1a1a1a",

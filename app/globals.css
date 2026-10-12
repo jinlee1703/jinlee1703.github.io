@@ -124,6 +124,12 @@ a {
 .prose .mermaid .nodeLabel p {
   margin: 0;
 }
+/* subgraph(cluster) 타이틀은 노드 배경(빗금)이 없으므로 칩 불필요 — 칩이 오히려 글자를 가린다 */
+.prose .mermaid .cluster-label .nodeLabel,
+.prose .mermaid .cluster-label span {
+  background: transparent;
+  padding: 0;
+}
 /* 엣지 라벨도 동일 처리 */
 .prose .mermaid .edgeLabel {
   border-radius: 4px;
@@ -161,4 +167,109 @@ a {
 }
 .markdown-alert-caution {
   border-left-color: #dc2626;
+}
+
+/* 본문용 수평 막대 차트 — 소수 항목의 분포 표현 (mermaid pie 대체, 다크/라이트 대응) */
+.hbar {
+  margin: 1.5rem auto;
+  max-width: 34rem;
+  font-size: 0.875rem;
+}
+.hbar-title {
+  text-align: center;
+  font-weight: 600;
+  margin-bottom: 0.9rem;
+}
+.hbar-row {
+  display: grid;
+  grid-template-columns: minmax(7rem, auto) 1fr 4.5rem;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0.45rem 0;
+}
+.hbar-label {
+  text-align: right;
+  color: var(--tw-prose-body, inherit);
+}
+.hbar-track {
+  display: block;
+  height: 1.05rem;
+  border-radius: 6px;
+  background: rgba(127, 127, 127, 0.14);
+  overflow: hidden;
+}
+.hbar-fill {
+  display: block;
+  height: 100%;
+  border-radius: 6px;
+  background: #9ca3af;
+}
+.hbar-fill--green { background: #34a853; }
+.hbar-fill--amber { background: #f9ab00; }
+.hbar-fill--red { background: #ea4335; }
+.hbar-fill--gray { background: #9ca3af; }
+.hbar-value {
+  font-variant-numeric: tabular-nums;
+  opacity: 0.85;
+  white-space: nowrap;
+}
+.dark .hbar-track {
+  background: rgba(255, 255, 255, 0.09);
+}
+
+/* 이미지 자리 표시 — 캡처/그림 삽입 전 위치 검토용 */
+.img-placeholder {
+  margin: 1.5rem auto;
+  max-width: 34rem;
+  min-height: 11rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  border: 2px dashed rgba(127, 127, 127, 0.45);
+  border-radius: 10px;
+  background: rgba(127, 127, 127, 0.08);
+  padding: 1.2rem 1.5rem;
+  text-align: center;
+  font-size: 0.85rem;
+  opacity: 0.85;
+}
+.img-placeholder strong {
+  font-size: 0.95rem;
+}
+
+/* 그림 + 캡션 묶음 (rehypeFigures) — 이미지·다이어그램·차트 공통 */
+.prose .post-figure {
+  margin: 1.75rem 0;
+}
+/* figure 내부 그림 요소의 prose 여백을 모두 제거 — 캡션이 그림에 바로 붙게.
+   이미지는 <figure><p><img></p></figure> 구조라 p·img 모두 눌러야 한다 */
+.prose .post-figure > :first-child,
+.prose .post-figure p,
+.prose .post-figure img {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.prose .post-figure img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+.prose .post-figure .mermaid,
+.prose .post-figure .hbar {
+  margin: 0 auto;
+}
+.prose .post-figure figcaption {
+  margin-top: 0.4rem;
+  text-align: center;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  opacity: 0.7;
+}
+.prose .post-figure figcaption em {
+  font-style: normal;
 }
