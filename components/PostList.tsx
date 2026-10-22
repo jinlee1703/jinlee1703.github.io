@@ -40,7 +40,6 @@ export default function PostList({
           p.category.toLowerCase().includes(q)
         : true,
     );
-  const shown = filtered.slice(0, visible);
   const hasMore = visible < filtered.length;
 
   // 검색어·카테고리가 바뀌면 처음부터 다시 보여준다.
@@ -100,25 +99,31 @@ export default function PostList({
         <button className={chip(active === null)} onClick={() => setActive(null)}>
           전체 {posts.length}
         </button>
+        {/* 크롤러에게는 카테고리 페이지 링크, 화면에서는 제자리 필터로 동작한다. */}
         {categories.map((c) => (
-          <button
+          <Link
             key={c.name}
+            href={`/${c.name}/`}
             className={chip(active === c.name)}
-            onClick={() => setActive(c.name)}
+            onClick={(e) => {
+              e.preventDefault();
+              setActive(c.name);
+            }}
           >
             {c.name} {c.count}
-          </button>
+          </Link>
         ))}
       </div>
 
-      {shown.length === 0 ? (
+      {filtered.length === 0 ? (
         <p className="py-16 text-center text-sm text-[var(--muted)]">
           검색 결과가 없습니다.
         </p>
       ) : (
         <ul className="divide-y divide-[var(--border)]">
-          {shown.map((p) => (
-            <li key={`${p.category}/${p.slug}`}>
+          {/* 크롤러가 모든 글 링크를 찾도록 전부 렌더링하고, 화면에는 visible개만 보여준다. */}
+          {filtered.map((p, i) => (
+            <li key={`${p.category}/${p.slug}`} hidden={i >= visible}>
               <Link
                 href={`/${p.category}/${p.slug}/`}
                 className="group flex items-baseline justify-between gap-4 py-3"
